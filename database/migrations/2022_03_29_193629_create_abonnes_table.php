@@ -15,11 +15,11 @@ class CreateAbonnesTable extends Migration
     {
         Schema::create('abonnes', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->string('mot_passe');
-            $table->string('email')->unique();
-            $table->integer('telephone');
-            $table->String('num_rc');
+            $table->integer('tel')->nullable();
+            $table->string('adresse')->nullable();
+            $table->string('date_naissance')->nullable();
+            $table->string('registre_commerce')->nullable();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

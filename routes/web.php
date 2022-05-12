@@ -9,23 +9,9 @@ use App\Models\Vol;
 use App\Models\Voyage;
 
 
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/', 'IndexController@index')->name('index');
 
 
-Route::get('/', function () {
-    return view('accueil');
-    
-});
 Route::get('/vols', function () {
     return view("vols",["vols" => Vol::all()]); 
     
@@ -42,12 +28,7 @@ Route::get('/bateaux','BateauController@index');
     Route::get('hotels',[HotelController::class,'allHotels']);
 
 
-   // Route::get('users',[UserController::class,'allUsers']);
-    
-    //Route::get('voyages',[VoyageController::class,'allVoyages']);
-
-
-    //Route::get('bateaux',[BateauController::class,'allBateaux']);
+   
 
 Route::get('/contact', function () {
     return view('contact');
@@ -95,10 +76,42 @@ Route::post('/admin/voyages','Admin\VoyageController@store');
 Route::get('/admin/voyages/{id}','Admin\VoyageController@edit');
 Route::delete('/admin/voyages/{id}','Admin\VoyageController@destroy');
 
-//ADMIN Useres
-Route::get('/admin/users','Admin\UserController@index');
-Route::get('/admin/users/create','Admin\UserController@create');
-Route::put('/admin/users','Admin\UserController@update');
-Route::post('/admin/users','Admin\UserController@store');
-Route::get('/admin/users/{id}','Admin\UserController@edit');
-Route::delete('/admin/users/{id}','Admin\UserController@destroy');
+Route::resource('/admin/users', 'Admin\UserController') ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/dashboard', function () {
+   return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+
+require __DIR__.'/auth.php';

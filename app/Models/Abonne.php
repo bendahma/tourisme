@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Abonne extends Model
 {
     use HasFactory;
+
+    protected $guarded = [] ;
+
     public function voyages(){
      return $this->hasMany('App\Voyage');
     }

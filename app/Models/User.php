@@ -17,11 +17,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -43,5 +39,9 @@ class User extends Authenticatable
     ];
     public function factures(){
         return $this->hasMany('App\Facture');
+    }
+
+    public function is_admin(){
+       return $this->user_type == 'super_admin' ? true : false ;
     }
 }
