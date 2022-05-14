@@ -46,48 +46,41 @@
                               <a href="#" class="nav-link menu-title">Contact</a>
 
                            </li>
+                           {{-- @auth
 
+                           @guest
+
+
+
+                           @endauth --}}
+
+                           @auth
+                           <li class="dropdown">
+                              <a href="{{ url('/admin') }}" class="nav-link menu-title">
+                                 Dashboard
+                              </a>
+                           </li>
+                           @endauth
+                           @guest
+                           <li class="dropdown">
+                              <a href="{{ route('register_client') }}" class="nav-link menu-title ">Client</a>
+                           </li>
+
+                           <li class="dropdown">
+                              <a href="{{ route('register') }}" class="nav-link menu-title">Agence</a>
+                           </li>
+
+                           @endguest
                         </ul>
                      </div>
                   </div>
                </nav>
-               <ul class="header-right">
 
-                  {{-- <li class="user user-light bg_dark">
-                     <a href="#">
-                        <i class="fas fa-user"></i>
-                     </a>
-                  </li> --}}
 
-                  @if (Route::has('login'))
-                  <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                     @auth
-                     <a href="{{ url('/admin') }}"
-                        class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
-                     @else
-                     <div class="d-flex justify-content-between">
-
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Se
-                           connect</a>
-
-                        @if (Route::has('register'))
-                        <div class="d-flex">
-
-                           <a href="{{ route('register_client') }}" class="mx-2 ">Client</a>
-
-                           <a href="{{ route('register') }}" class=" mx-2">Abonné</a>
-
-                        </div>
-                     </div>
-
-                     @endif
-                     @endauth
-                  </div>
-                  @endif
-
-               </ul>
             </div>
+
          </div>
       </div>
+   </div>
    </div>
 </header>

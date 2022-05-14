@@ -60,13 +60,7 @@ Route::get('/admin/bateaux/create','Admin\BateauController@create');
 Route::post('/admin/bateaux','Admin\BateauController@store');
 Route::get('/admin/bateaux/{id}','Admin\BateauController@edit');
 Route::delete('/admin/bateaux/{id}','Admin\BateauController@destroy');
-//ADMIN ABonnnes
-Route::get('/admin/abonnes','Admin\AbonneController@index');
-Route::get('/admin/abonnes/create','Admin\AbonneController@create');
-Route::put('/admin/abonnes','Admin\AbonneController@update');
-Route::post('/admin/abonnes','Admin\AbonneController@store');
-Route::get('/admin/abonnes/{id}','Admin\AbonneController@edit');
-Route::delete('/admin/abonnes/{id}','Admin\AbonneController@destroy');
+
 
 //ADMIN VOYAGE
 Route::get('/admin/voyages','Admin\VoyageController@index');
@@ -76,7 +70,14 @@ Route::post('/admin/voyages','Admin\VoyageController@store');
 Route::get('/admin/voyages/{id}','Admin\VoyageController@edit');
 Route::delete('/admin/voyages/{id}','Admin\VoyageController@destroy');
 
-Route::resource('/admin/users', 'Admin\UserController') ;
+// Routes need to be authenticated to be accessed 
+Route::middleware('auth')->group(function () {
+   
+   // Route::resource group all the basic : route index,create,store,edit,update, delete
+   Route::resource('/admin/users', 'Admin\UserController') ; 
+   Route::resource('/admin/abonnes', 'Admin\AbonneController') ;
+   Route::resource('/admin/clients', 'Admin\ClientController') ;
+});
 
 
 

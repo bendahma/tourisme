@@ -14,52 +14,60 @@
                      </div>
                      <div class="card-body">
                         <form class="theme-form mega-form" method="POST"
-                           action="{{ isset($abonne) ? route('abonnes.update' , $abonne->id) : route('abonnes.store') }}">
+                           action="{{ isset($client) ? route('clients.update' , $client->id) : route('clients.store') }}">
                            @csrf
-                           @if (isset($abonne))
+                           @if (isset($client))
                            @method('PATCH')
                            @endif
                            <div class="mb-3">
                               <label class="form-label-title">Nom et prenom</label>
                               <input class="form-control" type="text" placeholder="Nom et prenom" name='name'
-                                 @if(isset($abonne) )value="{{ $abonne->user->name }}" required @endif>
+                                 @if(isset($client) )value="{{ $client->user->name }}" required @endif>
+                           </div>
+
+                           <div class="mb-3">
+                              <label class="form-label-title">Date de naissance</label>
+                              <input class="form-control" type="text" placeholder="Date de naissance jj-mm-aaaa"
+                                 name='date_naissance' @if(isset($client) )value="{{ $client->date_naissance }}"
+                                 required @endif>
                            </div>
 
                            <div class="mb-3">
                               <label class="form-label-title ">Téléphone</label>
                               <input class="form-control" type="text" placeholder="Téléphone" name='telephone'
-                                 @if(isset($abonne) )value="{{ $abonne->telephone }}" @endif>
+                                 @if(isset($client) )value="{{ $client->telephone }}" @endif>
                            </div>
 
                            <div class="mb-3">
                               <label class="form-label-title ">adresse</label>
                               <input class="form-control" type="text" placeholder="adresse" name='adresse'
-                                 @if(isset($abonne) )value="{{ $abonne->adresse }}" @endif>
+                                 @if(isset($client) )value="{{ $client->adresse }}" @endif>
                            </div>
 
                            <div class="mb-3">
-                              <label class="form-label-title ">Numéro de regitre commercial</label>
-                              <input class="form-control" type="text" placeholder="N° registre commerce"
-                                 name='registre_commerce' @if(isset($abonne) )value="{{ $abonne->registre_commerce }}"
-                                 @endif>
+                              <label class="form-label-title ">Wilaya</label>
+                              <input class="form-control" type="text" placeholder="Wilaya" name='wilaya'
+                                 @if(isset($wilaya) )value="{{ $client->wilaya }}" @endif>
                            </div>
+
+
 
                            <div class="mb-3">
                               <label class="form-label-title "> E-mail</label>
                               <input class="form-control" type="email" placeholder=" E-mail" name='email'
-                                 @if(isset($abonne) ) value="{{ $abonne->user->email }}" required @endif>
+                                 @if(isset($client) ) value="{{ $client->user->email }}" required @endif>
                            </div>
 
                            <div class="mb-3">
                               <label class="form-label-title">Mot de passe</label>
                               <input class="form-control" type="password" placeholder="Mot de passe" name='password'
-                                 @if(!isset($abonne)) required @endif>
+                                 @if(!isset($client)) required @endif>
                            </div>
 
 
                            <div class="card-footer text-end">
                               <button type="submit" class="btn btn-primary me-3">
-                                 {{ isset($abonne) ? 'Mettre à jours l\'utilisateur' : 'Ajouté Abonne' }}
+                                 {{ isset($client) ? 'Mettre à jours le client' : 'Ajouté nouveau client' }}
                               </button>
                               <button class="btn btn-outline-primary" type="reset">Annuler</button>
                            </div>

@@ -18,6 +18,20 @@ class DatabaseSeeder extends Seeder
        'email' => 'admin@tourisme.com',
        'user_type' => 'super_admin'
     ]);
+    \App\Models\User::factory(1)->create([
+       'email' => 'abonne@tourisme.com',
+       'user_type' => 'abonne'
+    ]);
+    \App\Models\User::factory(1)->create([
+       'email' => 'client@tourisme.com',
+       'user_type' => 'client'
+    ]);
+    \App\Models\Abonne::factory(1)->create([
+       'user_id' => 2
+    ]);
+    \App\Models\Client::factory(1)->create([
+       'user_id' => 3
+    ]);
    //  $this->call([
    //      HotelSeeder::class,
    //  ]);

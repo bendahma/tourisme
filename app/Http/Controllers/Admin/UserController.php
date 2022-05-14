@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+
+use App\Models\User;
+use App\Models\Abonne;
+use App\Models\Client;
 
 class UserController extends Controller
 {
@@ -26,12 +29,32 @@ class UserController extends Controller
  
     public function store(Request $request)
     {
-        User::create([
-           'name' => $request->name ,
-           'email' => $request->email ,
-           'password' => Hash::make($request->password) ,
-           'user_type' => $request->user_type ,
-        ]);
+      $request->validate([
+         'name' => ['required', 'string', 'max:255'],
+         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+         'user_type' => ['required', 'string'],
+         'password' => ['required', 'confirmed', Rules\Password::defaults()],
+     ]);
+
+      $user = User::create([
+         'name' => $request->name ,
+         'email' => $request->email ,
+         'password' => Hash::make($request->password) ,
+         'user_type' => $request->user_type ,
+      ]);
+
+      if($request->user_type == 'abonne'){
+         Abonne::create([
+            'user_id' => $user->id,
+         ]);
+      }
+
+      if($request->user_type == 'client'){
+         Client::create([
+            'user_id' => $user->id,
+         ]);
+      }
+
 
         return redirect()->route('users.index') ;
     }
@@ -71,7 +94,6 @@ class UserController extends Controller
            'name' => $request->name,
            'email' => $request->email,
            'user_type' => $request->user_type,
-
         ]);
         return redirect(route('users.index'));
     }

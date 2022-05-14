@@ -14,7 +14,7 @@
                   </div>
 
                   <form class="d-inline-flex">
-                     <a href="{{route('abonnes.create')}}" class="align-items-center btn btn-theme"> <i
+                     <a href="{{route('clients.create')}}" class="align-items-center btn btn-theme"> <i
                            data-feather="plus-square"></i>Ajouter nouveau
                      </a>
                   </form>
@@ -30,15 +30,15 @@
                                  <th></th>
                                  <th>Nom et prenom</th>
                                  <th>Téléphone</th>
-                                 <th>Email</th>
-                                 <th>N.R.C</th>
+                                 <th>Adresse</th>
+                                 <th>Wilaya</th>
                                  <th></th>
 
                               </tr>
                            </thead>
                            <tbody>
-                              @if ($abonnes->count() > 0)
-                              @foreach ($abonnes as $a)
+                              @if ($clients->count() > 0)
+                              @foreach ($clients as $client)
                               <tr>
                                  <td>
                                     {{$loop->iteration}}
@@ -48,23 +48,23 @@
                                        <img src="{{asset('adm/assets/images/users/1.jpg')}}" alt="users">
                                     </span>
                                     <span class="mx-3 ">
-                                       {{$a->user->name}}
+                                       {{$client->user->name}}
                                     </span>
                                  </td>
                                  <td>
-                                    {{$a->telephone}}
+                                    {{$client->telephone}}
                                  </td>
                                  <td>
-                                    {{$a->user->email}}
+                                    {{$client->adresse}}
                                  </td>
                                  <td>
-                                    {{$a->registre_commerce}}
+                                    {{$client->wilaya}}
                                  </td>
                                  <td class="font-primary d-flex align-items-center">
-                                    <a href="{{route('abonnes.edit',$a->id)}}">
+                                    <a href="{{route('clients.edit',$client->id)}}">
                                        <i class="fa fa-pencil-square-o " aria-hidden="true"></i>
                                     </a>
-                                    <form action="{{route('abonnes.destroy',$a->id)}}" method="POST">
+                                    <form action="{{route('clients.destroy',$client->id)}}" method="POST">
                                        @csrf
                                        @method('DELETE')
                                        <button type="submit" class="btn" style="background-transparent"><i
@@ -78,7 +78,8 @@
                               @endforeach
                               @else
                               <tr>
-                                 <td colspan="6">Aucun abonnes s'existe pour le moment.</td>
+                                 <td colspan="6" class="" style=""> Aucun client s'existe pour le
+                                    moment. </td>
                               </tr>
                               @endif
 
@@ -90,7 +91,7 @@
                      </div>
                   </div>
                </div>
-               {{$abonnes->links('vendor.pagination.bootstrap')}}
+               {{$clients->links('vendor.pagination.bootstrap')}}
             </div>
          </div>
 

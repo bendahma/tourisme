@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+
+use App\Models\User;
+use App\Models\Abonne;
+use App\Models\Client;
+
 
 class RegisteredUserController extends Controller
 {
@@ -53,6 +57,18 @@ class RegisteredUserController extends Controller
             'user_type' => $request->user_type,
             'password' => Hash::make($request->password),
         ]);
+
+        if($request->user_type == 'abonne'){
+           Abonne::create([
+              'user_id' => $user->id,
+           ]);
+        }
+
+        if($request->user_type == 'client'){
+           Client::create([
+              'user_id' => $user->id,
+           ]);
+        }
 
         event(new Registered($user));
 

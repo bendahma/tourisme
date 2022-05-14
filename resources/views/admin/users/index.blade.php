@@ -40,6 +40,7 @@
                               </tr>
                            </thead>
                            <tbody>
+                              @if ($users->count() > 0)
                               @foreach ($users as $user)
                               <tr>
 
@@ -63,20 +64,26 @@
 
                                  <td> {{$user->user_type}} </td>
 
-                                 <td class="d-flex ">
+                                 <td class="font-primary d-flex align-items-center">
                                     {{-- <a href="" class="mx-2"><i class="fa fa-eye" aria-hidden="true"></i></a> --}}
-                                    <a href="{{route('users.edit',$user->id)}}" class="mx-2"><i
-                                          class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                    <a href="{{route('users.edit',$user->id)}}" class=""><i
+                                          class="fa fa-pencil-square-o fa-2xl" aria-hidden="true"></i></a>
                                     <form action="{{route('users.destroy',$user->id)}}" method="POST">
                                        @csrf
                                        @method('DELETE')
-                                       <button type="submit" class="mx-2 btn btn-link"><i
-                                             class="fa fa-trash-o fa-2xl btn btn-link" aria-hidden="true"></i></button>
+                                       <button type="submit" class="btn"><i class="fa fa-trash-o text-danger fa-3xl "
+                                             style="font-size: 1.3rem" aria-hidden="true"></i></button>
                                     </form>
 
                                  </td>
                               </tr>
                               @endforeach
+                              @else
+                              <tr>
+                                 <td colspan="5"> Aucun utilisateur s'existe pour le moment. </td>
+                              </tr>
+                              @endif
+
 
 
 
@@ -86,7 +93,7 @@
                            </tbody>
                         </table>
                         <div class="my-4 d-flex">
-                           {{$users->links()}}
+                           {{$users->links('vendor.pagination.bootstrap')}}
                         </div>
                      </div>
                   </div>

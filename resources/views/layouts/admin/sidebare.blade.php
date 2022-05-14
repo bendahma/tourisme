@@ -18,19 +18,37 @@
                         aria-hidden="true"></i></div>
                </li>
 
-               <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{url('admin')}}"><i
-                        data-feather="home"> </i><span>Tableau de board</span></a></li>
-
+               <li class="sidebar-list">
+                  <a class="sidebar-link sidebar-title link-nav" href="{{url('/admin')}}">
+                     <i data-feather="home"> </i>
+                     <span>Tableau de board</span>
+                  </a>
+               </li>
+               <li class="sidebar-list">
+                  <a class="sidebar-link sidebar-title link-nav" href="{{url('/')}}">
+                     <i data-feather="home"> </i>
+                     <span>Accueil</span>
+                  </a>
+               </li>
+               @if(auth()->user()->is_admin())
                <li class="sidebar-list">
                   <a class="sidebar-link sidebar-title" href="#"><i data-feather="users"></i><span>Abonnes </span></a>
                   <ul class="sidebar-submenu">
-                     <li><a href="{{url('admin/abonnes')}}">Listes</a></li>
-                     <li><a href="{{url('admin/abonnes/create')}}">Nouveau abonne</a></li>
+                     <li><a href="{{route('abonnes.index')}}">Listes</a></li>
+                     <li><a href="{{route('clients.create')}}">Nouveau abonne</a></li>
                   </ul>
                </li>
-
-               <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i
-                        data-feather="map"></i><span>Voyages</span></a>
+               <li class="sidebar-list">
+                  <a class="sidebar-link sidebar-title" href="#"><i data-feather="users"></i><span>Client </span></a>
+                  <ul class="sidebar-submenu">
+                     <li><a href="{{route('clients.index')}}">Listes</a></li>
+                     <li><a href="{{route('clients.create')}}">Nouveau client</a></li>
+                  </ul>
+               </li>
+               @endif
+               @if (auth()->user()->is_abonne())
+               <li class="sidebar-list">
+                  <a class="sidebar-link sidebar-title" href="#"><i data-feather="map"></i><span>Voyages</span></a>
                   <ul class="sidebar-submenu">
                      <li><a href="{{url('admin/voyages')}}">Listes</a></li>
                      <li><a href="{{url('admin/voyages/Détail_paquet')}}">Détails du paquet</a></li>
@@ -39,7 +57,9 @@
                      <li><a href="{{url('admin/voyage/paquets')}}">Nouveau paquet</a></li>
                   </ul>
                </li>
+               @endif
 
+               @if (auth()->user()->is_abonne())
                <li class="sidebar-list">
                   <a class="linear-icon-link sidebar-link sidebar-title" href="#"><i
                         data-feather="briefcase"></i><span>Hotel
@@ -52,7 +72,9 @@
 
                   </ul>
                </li>
+               @endif
 
+               @if (auth()->user()->is_abonne())
                <li class="sidebar-list"><a class="linear-icon-link sidebar-link sidebar-title" href="#"><i
                         data-feather="coffee"></i><span>Vol </span></a>
                   <ul class="sidebar-submenu">
@@ -63,7 +85,9 @@
 
                   </ul>
                </li>
+               @endif
 
+               @if (auth()->user()->is_abonne())
                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i
                         data-feather="navigation"></i><span>Bateau</span></a>
                   <ul class="sidebar-submenu">
@@ -74,10 +98,14 @@
 
                   </ul>
                </li>
+               @endif
 
+               @if (auth()->user()->is_abonne())
                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="booking.html"><i
                         data-feather="bookmark"> </i><span>Réservation</span></a>
                </li>
+               @endif
+
 
 
                @if(auth()->user()->is_admin())
