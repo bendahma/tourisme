@@ -15,11 +15,13 @@ class CreateHotelsTable extends Migration
     {
         Schema::create('hotels', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_h');
-            $table->string('adresse_h');
-            $table->string('photo_h');
-            $table->integer('Téléphone');
-            $table->unsignedBigInteger('abonne_id');
+            $table->string('nom');
+            $table->string('adresse');
+            $table->string('image');
+            $table->string('telephone');
+            $table->string('type');
+            $table->string('nombre_chambre');
+            $table->foreignId('abonne_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

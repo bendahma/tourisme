@@ -21,7 +21,7 @@
                             <div class="card-body">
                                     <div class="mb-3">
                                         <label class="form-label-title">Photo de l'hotel</label>
-                                        <input class="form-control" type="file" placeholder="Nom d'hotel" name="photo">
+                                        <input class="form-control" type="file" placeholder="Nom d'hotel" name="image">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label-title">Nom d'hotel</label>
@@ -29,18 +29,36 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label-title">Adresse</label>
-                                        <input class="form-control" type="text" placeholder="Adresse" name="Adresse">
+                                        <input class="form-control" type="text" placeholder="Adresse" name="adresse">
                                     </div>
                                    
                                     <div class="mb-3">
                                         <label class="form-label-title mt-4">Téléphone</label>
-                                        <input class="form-control" type="Number"
-                                            placeholder="Téléphone">
+                                        <input class="form-control" type="Number" name="telephone" placeholder="Téléphone">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label-title mt-4">Nombre des chambre</label>
+                                        <input class="form-control" type="Number" name="nombre_chambre" placeholder="Nombre des chambres">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label-title mt-4">Type d'hotel</label>
+                                        <select class="form-control" name="type">
+                                            <option selected disabled>Choisi type de l'hotel</option>
+                                            <option value="2 Etoile">2 Etoile</option>
+                                            <option value="3 Etoile">3 Etoile</option>
+                                            <option value="4 Etoile">4 Etoile</option>
+                                            <option value="5 Etoile">5 Etoile</option>
+                                        </select>
                                     </div>
                                    
                             </div>
                        
-
+                            <div class="card-footer text-end">
+                                <button  type="submit" class="btn btn-primary me-3">{{isset($hotel) ? 'Mettre à jours ' : 'Ajouté '}} Hotel </button>
+                                <button class="btn btn-outline-primary">Annuler</button>
+                            </div>
                         </div>
 
                         <!--Hotel detail end-->
@@ -54,7 +72,7 @@
 
 
     <!--room detail start-->
-    <div class="container-fluid">
+    {{-- <div class="container-fluid">
         <div class="row">
 
             <div class="col-12">
@@ -80,17 +98,14 @@
                                   
                             </div>
                            
-                            <div class="card-footer text-end">
-                                <button  type="submit" class="btn btn-primary me-3">Envoyer</button>
-                                <button class="btn btn-outline-primary">Annuler</button>
-                            </div>
+                           
                         </div>
                     </div>
 
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     </form>
     <!--room detail end-->
     <div class="container-fluid">

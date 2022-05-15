@@ -51,10 +51,10 @@
                   <a class="sidebar-link sidebar-title" href="#"><i data-feather="map"></i><span>Voyages</span></a>
                   <ul class="sidebar-submenu">
                      <li><a href="{{route('voyages.index')}}">Listes</a></li>
-                     <li><a href="{{url('admin/voyages/Détail_paquet')}}">Détails du paquet</a></li>
-                     <li><a href="{{url('admin/voyages/create')}}">Nouveau voyage</a></li>
-                     <li><a href="{{url('admin/voyage/paquets')}}">Toutes les paquets</a></li>
-                     <li><a href="{{url('admin/voyage/paquets')}}">Nouveau paquet</a></li>
+                     {{-- <li><a href="{{url('admin/voyages/Détail_paquet')}}">Détails du paquet</a></li> --}}
+                     <li><a href="{{route('voyages.create')}}">Nouveau voyage</a></li>
+                     {{-- <li><a href="{{url('admin/voyage/paquets')}}">Toutes les paquets</a></li> --}}
+                     {{-- <li><a href="{{url('admin/voyage/paquets')}}">Nouveau paquet</a></li> --}}
                   </ul>
                </li>
                @endif
@@ -65,11 +65,8 @@
                         data-feather="briefcase"></i><span>Hotel
                      </span></a>
                   <ul class="sidebar-submenu">
-                     <li><a href="{{url('admin/hotels')}}">Listes</a></li>
-
-                     <li><a href="{{url('admin/hotels/Détail_hotel')}}">Détails d'hôtel</a></li>
-                     <li><a href="{{url('admin/hotels/create')}}">Nouveau hotel</a></li>
-
+                     <li><a href="{{route('hotels.index')}}">Listes</a></li>
+                     <li><a href="{{route('hotels.create')}}">Nouveau hotel</a></li>
                   </ul>
                </li>
                @endif

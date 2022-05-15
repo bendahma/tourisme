@@ -79,7 +79,7 @@
                               </tr>
                               @endforeach
                               @else
-                              <tr>
+                              <tr style="text-align: center; font-weight:bold; font-size:1rem">
                                  <td colspan="5"> Aucun utilisateur s'existe pour le moment. </td>
                               </tr>
                               @endif

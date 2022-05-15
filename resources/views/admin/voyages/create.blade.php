@@ -63,7 +63,7 @@
                     </div>
 
                     <div class="col-6">
-                        <label class="form-label-title ">Date arrivée</label>
+                        <label class="form-label-title ">Date Fin</label>
                         <div class="input-group date" id="Closing"  data-target-input="nearest">
                             <input class="form-control datetimepicker-input digits" type="date" name="date_arrivee" data-target="#Closing" @if (isset($voyage)) value="{{$voyage->date_arrivee}}" @endif>
                             <div class="input-group-text" data-target="#Closing" data-toggle="datetimepicker">

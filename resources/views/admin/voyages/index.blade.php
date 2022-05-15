@@ -29,9 +29,9 @@
                         <th>Destination</th>
                         <th>Personne</th>
                         <th>Durée</th>
-                        <th>Prix</th>
+                        <th >Prix  </th>
                         <th>Date Départ</th>
-                        <th>Date Arrivée</th>
+                        <th>Date Fin</th>
                         <th></th>
                       </tr>
                     </thead>
@@ -39,12 +39,11 @@
                       @if ($voyages->count()>0)
                       @foreach ($voyages as $voyage)
                       <tr>
-                      
                         <td class=" "> {{$voyage->titre}} </td>
                         <td> {{$voyage->destination}} </td>
                         <td> {{$voyage->max_perso}} </td>
                         <td> {{$voyage->duree}} </td>
-                        <td> {{$voyage->prix}} </td>
+                        <td > {{number_format($voyage->prix,2,'.',' ')}} DA</td>
                         <td> {{$voyage->date_depart}} </td>
                         <td> {{$voyage->date_arrivee}} </td>
      
@@ -65,7 +64,7 @@
                       </tr>
                       @endforeach
                       @else
-                      <tr>
+                      <tr style="text-align: center; font-weight:bold; font-size:1rem">
                         <td colspan="8"> Aucun voyage existe pour le moment. </td>
                       </tr>
                       @endif

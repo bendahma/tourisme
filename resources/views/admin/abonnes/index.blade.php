@@ -77,7 +77,7 @@
                               </tr>
                               @endforeach
                               @else
-                              <tr>
+                              <tr style="text-align: center; font-weight:bold; font-size:1rem">
                                  <td colspan="6">Aucun abonnes s'existe pour le moment.</td>
                               </tr>
                               @endif
