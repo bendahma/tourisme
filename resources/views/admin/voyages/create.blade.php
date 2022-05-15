@@ -1,10 +1,11 @@
 @extends('layouts.admin.master')
 @section('content')
 <div class="page-body">
-  <form class="theme-form mega-form" method="POST" enctype="multipart/form-data" action="{{url('/admin/voyages')}}">
+  <form class="theme-form mega-form" method="POST" enctype="multipart/form-data" action="{{isset($voyage) ? route('voyages.update',$voyage->id) : route('voyages.store')}}">
     @csrf
-
-    <!-- Container-fluid starts-->
+    @if (isset($voyage))
+        @method('PATCH')
+    @endif
     <div class="container-fluid">
       <div class="row">
 
@@ -18,12 +19,12 @@
                 <div class="card-body">
                   <form class="theme-form mega-form">
                     <div class="mb-3">
-                      <label class="form-label-title">Nom voyage</label>
-                      <input class="form-control" type="text" placeholder="Nom voyage" name="nom_v">
+                      <label class="form-label-title">Titre voyage</label>
+                      <input class="form-control" type="text" placeholder="Titre voyage" name="titre" @if (isset($voyage)) value="{{$voyage->titre}}" @endif>
                     </div>
                     <div class="mb-3">
-                      <label class="form-label-title">adresse</label>
-                      <input class="form-control" type="text" placeholder="Adresse" name="adresse_v" />
+                      <label class="form-label-title">Destination</label>
+                      <input class="form-control" type="text" placeholder="Adresse" name="destination" @if (isset($voyage)) value="{{$voyage->destination}}" @endif/>
 
                     </div>
 
@@ -33,19 +34,18 @@
 
                     <div class="mb-3">
                       <label class="form-label-title ">Durée </label>
-                      <div class="input-group mb-3"><span class="input-group-text">heure </span>
-                      <input class="form-control" type="Number" placeholder="Durée" name="duree">
+                      <div class="input-group mb-3"><span class="input-group-text">jours </span>
+                      <input class="form-control" type="text" placeholder="Durée" name="duree" @if (isset($voyage)) value="{{$voyage->duree}}" @endif>
                       </div>
                     </div>
                     <div class="mb-3">
-                      <label class="form-label-title ">Maximum des personnes </label>
-                      <input class="form-control" type="Number" placeholder="Maximum des personnes" name="max_perso">
+                      <label class="form-label-title ">N° des personnes </label>
+                      <input class="form-control" type="text" placeholder="N° des personnes" name="max_perso" @if (isset($voyage)) value="{{$voyage->max_perso}}" @endif>
                     </div>
                     <div class="mb-3">
                       <label class="form-label-title ">Prix</label>
                       <div class="input-group mb-3"><span class="input-group-text">DA </span>
-                        <input class="form-control" placeholder="DA20000" name="prix" type="text"
-                          aria-label="Amount (to the nearest dollar)">
+                        <input class="form-control" placeholder="Prix" name="prix" type="text" @if (isset($voyage)) value="{{$voyage->prix}}" @endif >
                       </div>
                     </div>
                    
@@ -53,38 +53,32 @@
                   <div class="row">
 
                     <div class="col-6">
-                        <label class="form-label-title ">Départ</label>
-                        <div class="input-group date" id="Opening"
-                            data-target-input="nearest">
-                            <input class="form-control datetimepicker-input digits"
-                                type="text" name="date_depart" data-target="#Opening">
-                            <div class="input-group-text" data-target="#Opening"
-                                data-toggle="datetimepicker"><i
-                                    class="fa fa-clock-o"></i>
+                        <label class="form-label-title ">Date départ</label>
+                        <div class="input-group date" id="Opening" data-target-input="nearest">
+                            <input class="form-control datetimepicker-input digits" type="date" name="date_depart" data-target="#Opening" @if (isset($voyage)) value="{{$voyage->date_depart}}" @endif>
+                            <div class="input-group-text" data-target="#Opening" data-toggle="datetimepicker">
+                              <i class="fa fa-clock-o"></i>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-6">
-                        <label class="form-label-title ">Arrivée</label>
-                        <div class="input-group date" id="Closing"
-                            data-target-input="nearest">
-                            <input class="form-control datetimepicker-input digits"
-                                type="text" name="date_arrivee" data-target="#Closing">
-                            <div class="input-group-text" data-target="#Closing"
-                                data-toggle="datetimepicker"><i
-                                    class="fa fa-clock-o"></i>
+                        <label class="form-label-title ">Date arrivée</label>
+                        <div class="input-group date" id="Closing"  data-target-input="nearest">
+                            <input class="form-control datetimepicker-input digits" type="date" name="date_arrivee" data-target="#Closing" @if (isset($voyage)) value="{{$voyage->date_arrivee}}" @endif>
+                            <div class="input-group-text" data-target="#Closing" data-toggle="datetimepicker">
+                              <i class="fa fa-clock-o"></i>
                             </div>
                         </div>
                     </div>
 
 
                 </div>
-
+                
                 </div>
                
                 <div class="card-footer text-end">
-                  <button type="submit" class="btn btn-primary me-3">Envoyer</button>
+                  <button type="submit" class="btn btn-primary me-3"> {{ isset($voyage) ? 'Mettre à jours voyage' : 'Publie voyage'  }} </button>
                   <button class="btn btn-outline-primary">Annuler</button>
                 </div>
               </div>

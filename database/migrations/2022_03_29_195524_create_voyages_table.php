@@ -15,14 +15,14 @@ class CreateVoyagesTable extends Migration
     {
         Schema::create('voyages', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_v');
-            $table->string('adresse_v');
+            $table->string('titre');
+            $table->string('destination');
             $table->string('duree');
             $table->integer('max_perso');
             $table->date('date_depart');
             $table->date('date_arrivee');
             $table->double('prix');
-            $table->unsignedBigInteger('abonne_id');
+            $table->foreignId('abonne_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

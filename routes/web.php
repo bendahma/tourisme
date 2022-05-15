@@ -62,14 +62,6 @@ Route::get('/admin/bateaux/{id}','Admin\BateauController@edit');
 Route::delete('/admin/bateaux/{id}','Admin\BateauController@destroy');
 
 
-//ADMIN VOYAGE
-Route::get('/admin/voyages','Admin\VoyageController@index');
-Route::get('/admin/voyages/create','Admin\VoyageController@create');
-Route::put('/admin/voyages','Admin\VoyageController@update');
-Route::post('/admin/voyages','Admin\VoyageController@store');
-Route::get('/admin/voyages/{id}','Admin\VoyageController@edit');
-Route::delete('/admin/voyages/{id}','Admin\VoyageController@destroy');
-
 // Routes need to be authenticated to be accessed 
 Route::middleware('auth')->group(function () {
    
@@ -77,6 +69,8 @@ Route::middleware('auth')->group(function () {
    Route::resource('/admin/users', 'Admin\UserController') ; 
    Route::resource('/admin/abonnes', 'Admin\AbonneController') ;
    Route::resource('/admin/clients', 'Admin\ClientController') ;
+   Route::resource('/admin/voyages', 'Admin\VoyageController') ;
+
 });
 
 

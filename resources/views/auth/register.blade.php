@@ -1,14 +1,14 @@
 <x-guest-layout>
    <div class="flex flex-col overflow-y-auto md:flex-row">
-      <div class="h-32 md:h-auto md:w-1/2">
-         <div class="w-full">
-            <h1 class="mb-4 text-xl font-semibold text-gray-700">
-               Login
+      <div class="h-32 bg-gray-200 md:h-auto md:w-1/2 px-6 sm:py-12 sm:p-12">
+         <div class="w-full bg-gray-200 ">
+            <h1 class="mb-4 text-3xl text-center font-semibold text-gray-700">
+               Se connecté 
             </h1>
 
             <x-auth-validation-errors :errors="$errors" />
 
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="{{ route('login') }}" class="">
                @csrf
 
                <!-- Input[ype="email"] -->
@@ -37,24 +37,26 @@
                      {{ __('Log in') }}
                   </x-button>
                </div>
+
+               @if (Route::has('password.request'))
+               <p class="mt-4">
+                  <a class="text-sm font-medium text-primary-600 hover:underline" href="{{ route('password.request') }}">
+                     {{ __('Forgot your password?') }}
+                  </a>
+               </p>
+               @endif
             </form>
 
             <hr class="my-8" />
 
-            @if (Route::has('password.request'))
-            <p class="mt-4">
-               <a class="text-sm font-medium text-primary-600 hover:underline" href="{{ route('password.request') }}">
-                  {{ __('Forgot your password?') }}
-               </a>
-            </p>
-            @endif
+           
          </div>
       </div>
 
       <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
          <div class="w-full">
-            <h1 class="mb-4 text-xl font-semibold text-gray-700">
-               Create account
+            <h1 class="mb-4 text-3xl text-center font-semibold text-gray-700">
+               Creer un compte
             </h1>
 
             <x-auth-validation-errors :errors="$errors" />
@@ -92,12 +94,9 @@
                </div>
             </form>
 
-            <hr class="my-8" />
+            
 
-            <p class="mt-4">
-               <a class="text-sm font-medium text-primary-600 hover:underline" href="{{ route('login') }}">{{
-                  __('Already registered?') }}</a>
-            </p>
+            
          </div>
       </div>
 </x-guest-layout>

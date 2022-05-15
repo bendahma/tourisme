@@ -67,7 +67,7 @@
                                     <form action="{{route('abonnes.destroy',$a->id)}}" method="POST">
                                        @csrf
                                        @method('DELETE')
-                                       <button type="submit" class="btn" style="background-transparent"><i
+                                       <button type="submit" class="btn" style="background-color:transparent"><i
                                              class="fa fa-trash-o text-danger" style="font-size: 1.3rem"
                                              aria-hidden="true"></i></button>
                                     </form>

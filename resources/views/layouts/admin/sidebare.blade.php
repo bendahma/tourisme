@@ -50,7 +50,7 @@
                <li class="sidebar-list">
                   <a class="sidebar-link sidebar-title" href="#"><i data-feather="map"></i><span>Voyages</span></a>
                   <ul class="sidebar-submenu">
-                     <li><a href="{{url('admin/voyages')}}">Listes</a></li>
+                     <li><a href="{{route('voyages.index')}}">Listes</a></li>
                      <li><a href="{{url('admin/voyages/Détail_paquet')}}">Détails du paquet</a></li>
                      <li><a href="{{url('admin/voyages/create')}}">Nouveau voyage</a></li>
                      <li><a href="{{url('admin/voyage/paquets')}}">Toutes les paquets</a></li>
