@@ -45,9 +45,11 @@
                         <td> {{$hotel->type}}  </td>
                         <td> {{$hotel->nombre_chambre}}  </td>
                         
-                        <td class="">
-                          <a href="{{route('chambreList',$hotel->id)}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                          <a href="{{route('hotels.edit',$hotel->id)}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                        <td class="d-flex align-items-center justify-content-between">
+                          <a href="{{route('chambreList',$hotel->id)}}">
+                            <i class="fa fa-bed" aria-hidden="true"></i>
+                          </a> 
+                          <a href="{{route('hotels.edit',$hotel->id)}}" class="mx-3"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                           <form action="{{route('hotels.destroy',$hotel->id)}}" method="post" >
                               @csrf
                               @method('DELETE')

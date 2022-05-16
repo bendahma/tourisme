@@ -19,7 +19,7 @@ class CreateChambresTable extends Migration
             $table->string('nombre_personne');
             $table->string('prix');
             $table->string('image');
-            $table->boolean('disponible')->default(false);
+            $table->boolean('disponible')->default(true);
             $table->foreignId('hotel_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

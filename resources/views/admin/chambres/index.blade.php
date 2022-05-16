@@ -7,13 +7,13 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="card">
-            <div class="card-header  card-header--2">
+            <div class="card-header  d-flex align-items-center justify-content-between">
 
               <div>
-                <h5>Liste des hotels</h5>
+                <h5>Liste des chambres de l'hotel : <span class="text-danger"> {{$hotel->nom}} </span></h5>
               </div>
               <form class="d-inline-flex">
-                <a href="{{route('chambres.create')}}" class="btn btn-theme"> <i data-feather="plus-square"></i>Ajouter un Chambre
+                <a href="{{route('chambre.create',$hotel->id)}}" class="btn btn-theme"> <i data-feather="plus-square"></i>Ajouter un Chambre
                 </a>
               </form>
             </div>
@@ -35,10 +35,10 @@
                     <tbody>
                       
                       @forelse ($chambres as $chambre)
-                      <tr>
+                      <tr class="{{$chambre->disponible == 'true' ? 'bg-danger text-white' : ''}}">
                         <td> {{ $loop->iteration }} </td>
                         <td style="max-width:10%">
-                          <img src="{{asset('/storage/chambres/' . $chambre->image)}}" alt="" style="max-width:10%;margin-right:12px; border-type:rounded">
+                          <img src="{{asset('/storage/chambres/' . $chambre->image)}}" alt="" style="max-width:20%;margin-right:12px; border-type:rounded">
                           <span> {{$chambre->type_chambre}}  </span>
                         </td>
                         <td> {{$chambre->nombre_personne}}  </td>
@@ -47,7 +47,7 @@
                         
                         <td class="">
                           <a href="{{route('chambres.edit',$chambre->id)}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                          <form action="{{route('chambre.destroy',$chambre->id)}}" method="post" >
+                          <form action="{{route('chambres.destroy',$chambre->id)}}" method="post" >
                               @csrf
                               @method('DELETE')
                               <button type="submit" style="background-color: transparent"><i class="fa fa-trash-o text-danger " aria-hidden="true" style="font-size:1.3rem;background-color:transparent"></i></button> 
@@ -57,7 +57,7 @@
                       </tr>    
                       @empty
                           <tr style="text-align: center; font-weight:bold; font-size:1rem">
-                            <td colspan="6"> Aucun chambre n'exite pour le moment. </td>
+                            <td colspan="6"> Aucun chambre appartient a ce hotel. </td>
                           </tr>
                       @endforelse
 
