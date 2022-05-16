@@ -77,24 +77,8 @@
                         </div>
                     </div>
 
-                    <div class=" pagination-box">
-                        <nav class="ms-auto me-auto " aria-label="...">
-                            <ul class="pagination pagination-primary">
-                                <li class="page-item disabled"><a class="page-link"
-                                        href="javascript:void(0)" tabindex="-1">Précédent</a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a>
-                                </li>
-                                <li class="page-item active"><a class="page-link"
-                                        href="javascript:void(0)">2 <span
-                                            class="sr-only">(courant)</span></a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a>
-                                </li>
-                                <li class="page-item"><a class="page-link"
-                                        href="javascript:void(0)">Suivant</a></li>
-                            </ul>
-                        </nav>
-                    </div>
+                    {{ $vols->links('vendor.pagination.bootstrap') }}
+
 
                 </div>
             </div>
