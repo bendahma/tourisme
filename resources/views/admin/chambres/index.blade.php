@@ -13,7 +13,7 @@
                 <h5>Liste des hotels</h5>
               </div>
               <form class="d-inline-flex">
-                <a href="{{route('hotels.create')}}" class="btn btn-theme"> <i data-feather="plus-square"></i>Ajouter un Hotel
+                <a href="{{route('chambres.create')}}" class="btn btn-theme"> <i data-feather="plus-square"></i>Ajouter un Chambre
                 </a>
               </form>
             </div>
@@ -25,30 +25,29 @@
                     <thead>
                       <tr>
                         <th></th>
-                        <th style="max-width: 10%">Nom</th>
-                        <th>Téléphone</th>
-                        <th>Type</th>
-                        <th># chambre</th>
+                        <th style="max-width: 10%">Type</th>
+                        <th>Nombre personne</th>
+                        <th>Prix</th>
+                        <th>Disponible</th>
                         <th></th>
                       </tr>
                     </thead>
                     <tbody>
                       
-                      @forelse ($hotels as $hotel)
+                      @forelse ($chambres as $chambre)
                       <tr>
                         <td> {{ $loop->iteration }} </td>
                         <td style="max-width:10%">
-                          <img src="{{asset('/storage/hotels/' . $hotel->image)}}" alt="" style="max-width:10%;margin-right:12px; border-type:rounded">
-                          <span> {{$hotel->nom}}  </span>
+                          <img src="{{asset('/storage/chambres/' . $chambre->image)}}" alt="" style="max-width:10%;margin-right:12px; border-type:rounded">
+                          <span> {{$chambre->type_chambre}}  </span>
                         </td>
-                        <td> {{$hotel->telephone}}  </td>
-                        <td> {{$hotel->type}}  </td>
-                        <td> {{$hotel->nombre_chambre}}  </td>
+                        <td> {{$chambre->nombre_personne}}  </td>
+                        <td> {{$chambre->prix}}  </td>
+                        <td> {{$chambre->disponible == true ? 'Disponible' : 'Reserve'}}  </td>
                         
                         <td class="">
-                          <a href="{{route('chambreList',$hotel->id)}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                          <a href="{{route('hotels.edit',$hotel->id)}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                          <form action="{{route('hotels.destroy',$hotel->id)}}" method="post" >
+                          <a href="{{route('chambres.edit',$chambre->id)}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                          <form action="{{route('chambre.destroy',$chambre->id)}}" method="post" >
                               @csrf
                               @method('DELETE')
                               <button type="submit" style="background-color: transparent"><i class="fa fa-trash-o text-danger " aria-hidden="true" style="font-size:1.3rem;background-color:transparent"></i></button> 
@@ -58,7 +57,7 @@
                       </tr>    
                       @empty
                           <tr style="text-align: center; font-weight:bold; font-size:1rem">
-                            <td colspan="6"> Aucun hotels n'exite pour le moment. </td>
+                            <td colspan="6"> Aucun chambre n'exite pour le moment. </td>
                           </tr>
                       @endforelse
 
@@ -68,7 +67,7 @@
               </div>
             </div>
 
-           {{ $hotels->links('vendor.pagination.bootstrap') }}
+           {{ $chambres->links('vendor.pagination.bootstrap') }}
 
           </div>
         </div>
