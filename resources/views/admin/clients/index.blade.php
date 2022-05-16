@@ -67,7 +67,7 @@
                                     <form action="{{route('clients.destroy',$client->id)}}" method="POST">
                                        @csrf
                                        @method('DELETE')
-                                       <button type="submit" class="btn" style="background-transparent"><i
+                                       <button type="submit" class="btn" style="color:red; font-size:1.2rem; background-color:transparent; border:0;"><i
                                              class="fa fa-trash-o text-danger" style="font-size: 1.3rem"
                                              aria-hidden="true"></i></button>
                                     </form>

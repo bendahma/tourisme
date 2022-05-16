@@ -3,105 +3,83 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Vol;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
+use App\Models\Abonne;
+use App\Models\Vol;
+
 class VolController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return view("admin.vols.index");
+        $abonne_id = Abonne::where('user_id',auth()->user()->id)->first()->id ;
+        $vols = Vol::where('abonne_id',$abonne_id)->paginate(10);
+        return view("admin.vols.index",compact('vols'));
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view("admin.vols.create");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
-        $vol = new Vol();
-        $vol->nom_compa = $request->nom_compa;
-        $vol->slug = Str::slug($request->nom,'_');
-        $vol->Date_D= $request->Date_D;
-        $vol->Date_A= $request->Date_A;
-        $vol->classage_vol= $request->classage_vol;
-        
-        $vol->abonne_id=1;
-        $vol->save();
+        $abonne_id = Abonne::where('user_id',auth()->user()->id)->first()->id ;
+
+        Vol::create([
+            'nom_compagne' => $request->nom_compagne ,
+            'lieu_debart' => $request->lieu_debart ,
+            'lieu_arrive' => $request->lieu_arrive ,
+            'date_debart' => $request->date_debart ,
+            'date_arrive' => $request->date_arrive ,
+            'classage_vol' => $request->classage_vol ,
+            'prix' => $request->prix ,
+            'abonne_id' => $abonne_id ,
+        ]);
+
+        return redirect(route('vols.index'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
         return Vol::find($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    
+    public function edit(Vol $vol)
     {
-        return Vol::find($id);
+        return view("admin.vols.create",compact('vol'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    
+    public function update(Request $request, Vol $vol)
     {
-        $vol = new Vol();
-        $vol->nom_compa = $request->nom_compa;
-        $vol->slug = Str::slug($request->nom,'_');
-        $vol->Date_D= $request->Date_D;
-        $vol->Date_A= $request->Date_A;
-        $vol->classage_vol= $request->classage_vol;
-        
-        $vol->abonne_id=1;
-        $vol->save();
-        return redirect('admin/vols')->with('status','vol ajouté');
+        $abonne_id = Abonne::where('user_id',auth()->user()->id)->first()->id ;
+
+        $vol->update([
+            'nom_compagne' => $request->nom_compagne ,
+            'lieu_debart' => $request->lieu_debart ,
+            'lieu_arrive' => $request->lieu_arrive ,
+            'date_debart' => $request->date_debart ,
+            'date_arrive' => $request->date_arrive ,
+            'classage_vol' => $request->classage_vol ,
+            'prix' => $request->prix ,
+            'abonne_id' => $abonne_id ,
+        ]);
+
+        return redirect(route('vols.index'));
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    
+    public function destroy(Vol $vol)
     {
-        $hotel=Vol::find($id);
-        $hotel->delete();
+        $vol->delete();
+        return redirect(route('vols.index'));
     }
 }

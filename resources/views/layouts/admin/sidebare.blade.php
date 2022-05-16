@@ -75,11 +75,8 @@
                <li class="sidebar-list"><a class="linear-icon-link sidebar-link sidebar-title" href="#"><i
                         data-feather="coffee"></i><span>Vol </span></a>
                   <ul class="sidebar-submenu">
-                     <li><a href="{{url('admin/vols')}}">Listes</a></li>
-
-                     <li><a href="{{url('admin/vols/Détail_vol')}}">Details de vol</a></li>
-                     <li><a href="{{url('admin/vols/create')}}">Nouveau vol </a></li>
-
+                     <li><a href="{{route('vols.index')}}">Listes</a></li>
+                     <li><a href="{{route('vols.create')}}">Nouveau vol </a></li>
                   </ul>
                </li>
                @endif

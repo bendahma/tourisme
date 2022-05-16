@@ -13,7 +13,7 @@
                 <h5>Liste des chambres de l'hotel : <span class="text-danger"> {{$hotel->nom}} </span></h5>
               </div>
               <form class="d-inline-flex">
-                <a href="{{route('chambre.create',$hotel->id)}}" class="btn btn-theme"> <i data-feather="plus-square"></i>Ajouter un Chambre
+                <a href="{{route('chambre.create',$hotel->id)}}" class="btn btn-theme"> <i data-feather="plus-square"></i>Ajouter une chambre
                 </a>
               </form>
             </div>
@@ -25,8 +25,8 @@
                     <thead>
                       <tr>
                         <th></th>
-                        <th style="max-width: 10%">Type</th>
-                        <th>Nombre personne</th>
+                        <th>Type</th>
+                        <th>Nombre <br/> personne</th>
                         <th>Prix</th>
                         <th>Disponible</th>
                         <th></th>
@@ -42,7 +42,7 @@
                           <span> {{$chambre->type_chambre}}  </span>
                         </td>
                         <td> {{$chambre->nombre_personne}}  </td>
-                        <td> {{$chambre->prix}}  </td>
+                        <td> {{number_format($chambre->prix,2,'.',' ')}}  DA</td>
                         <td> {{$chambre->disponible == true ? 'Disponible' : 'Reserve'}}  </td>
                         
                         <td class="">
@@ -50,7 +50,7 @@
                           <form action="{{route('chambres.destroy',$chambre->id)}}" method="post" >
                               @csrf
                               @method('DELETE')
-                              <button type="submit" style="background-color: transparent"><i class="fa fa-trash-o text-danger " aria-hidden="true" style="font-size:1.3rem;background-color:transparent"></i></button> 
+                              <button type="submit" style="color:red; font-size:1.2rem; background-color:transparent; border:0;"><i class="fa fa-trash-o text-danger " aria-hidden="true" style="font-size:1.3rem;background-color:transparent"></i></button> 
                           </form>
                         </td>
                        

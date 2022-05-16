@@ -15,7 +15,8 @@ class HotelController extends Controller
     
     public function index()
     {
-        $hotels = Hotel::paginate(10);
+        $abonne_id = Abonne::where('user_id',auth()->user()->id)->first()->id ;
+        $hotels = Hotel::where('abonne_id',$abonne_id)->paginate(10);
         return view("admin.hotels.index",compact('hotels'));
     }
 

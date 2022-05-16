@@ -13,8 +13,9 @@
                             <h5>Liste des vols</h5>
                         </div>
                         <form class="d-inline-flex">
-                            <a href="add-new-restaurant.html" class="btn btn-theme"> <i
-                                    data-feather="plus-square"></i>Ajouter vol
+                            <a href="{{route('vols.create')}}" class="btn btn-theme"> 
+                                <i data-feather="plus-square"></i>
+                                Ajouter un vol
                             </a>
                         </form>
                     </div>
@@ -25,43 +26,48 @@
                                 <table class="all-restaurant-table table table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Photo</th>
+                                            <th></th>
                                             <th>Nom companie</th>
                                             <th>Date Départ</th>
                                             <th>Date Arrivée</th>
+                                            <th>Lieu debart</th>
+                                            <th>Lieu arrive</th>
                                             <th>Classage Vol</th>
-                                            <th>Voir</th>
-                                            <th>Modifier</th>
-                                            <th>Supprimer</th>
+                                            <th>Prix</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse ($vols as $vol)
+                                            
+                                        
                                         <tr>
-                                            <td><span><img src="../assets/images/restaurant/1.jpg"
-                                                        alt="users"></span>
-                                            </td>
-                                            <td><a href="#"><span class="  d-block fw-bold ">Companie
-                                                        A</span>
-                                            </td>
-                                            <td> 2-3-2022</td>
-                                            <td>2-3-2022</td>
-                                            <td>économique</td>
+                                            <td> {{$loop->iteration}}</td>
+                                            <td> {{$vol->nom_compagne}}</td>
+                                            <td> {{$vol->date_debart}}</td>
+                                            <td> {{$vol->date_arrive}}</td>
+                                            <td> {{$vol->lieu_debart}}</td>
+                                            <td> {{$vol->lieu_arrive}}</td>
+                                            <td> {{$vol->classage_vol}}</td>
+                                            <td> {{number_format($vol->prix,2,'.',' ')}}</td>
 
 
-                                            <td>
-                                                <a href="restaurant-details.html"><i class="fa fa-eye"
-                                                        aria-hidden="true"></i></a>
+                                            <td class="d-flex align-items-center justify-content-center ">
+                                                <a href="{{route('vols.edit',$vol->id)}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                <form action="{{route('vols.destroy',$vol->id)}}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" style="color:red; mx-2; font-size:1.2rem; background-color:transparent; border:0;"> <i class="fa fa-trash-o" aria-hidden="true"></i> </button>
+                                                </form>
                                             </td>
-                                            <td>
-                                                <a href="javascript:void(0)"><i
-                                                        class="fa fa-pencil-square-o"
-                                                        aria-hidden="true"></i></a>
-                                            </td>
-                                            <td>
-                                                <a href="javascript:void(0)"><i class="fa fa-trash-o"
-                                                        aria-hidden="true"></i></a>
-                                            </td>
+                                          
                                         </tr>
+                                        @empty
+                                        <tr style="text-align: center; font-size:1rem; font-weight:bold">
+                                            <td colspan="8"> Aucun vol se trouve pour le moments </td>
+                                        </tr>
+                                        @endforelse
+                                       
                                        
                                          
                                          

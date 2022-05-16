@@ -71,8 +71,8 @@
                                     <form action="{{route('users.destroy',$user->id)}}" method="POST">
                                        @csrf
                                        @method('DELETE')
-                                       <button type="submit" class="btn"><i class="fa fa-trash-o text-danger fa-3xl "
-                                             style="font-size: 1.3rem" aria-hidden="true"></i></button>
+                                       <button type="submit" style="color:red; font-size:1.2rem; background-color:transparent; border:0;" ><i class="fa fa-trash-o text-danger fa-3xl "
+                                            aria-hidden="true"></i></button>
                                     </form>
 
                                  </td>

@@ -53,7 +53,7 @@
                           <form action="{{route('hotels.destroy',$hotel->id)}}" method="post" >
                               @csrf
                               @method('DELETE')
-                              <button type="submit" style="background-color: transparent"><i class="fa fa-trash-o text-danger " aria-hidden="true" style="font-size:1.3rem;background-color:transparent"></i></button> 
+                              <button type="submit" style="color:red; font-size:1.2rem; background-color:transparent; border:0;"><i class="fa fa-trash-o text-danger " aria-hidden="true" style="font-size:1.3rem;background-color:transparent"></i></button> 
                           </form>
                         </td>
                        

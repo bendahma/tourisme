@@ -14,7 +14,8 @@ class VoyageController extends Controller
     
     public function index()
     {
-        $voyages = Voyage::paginate(10);
+        $abonne_id = Abonne::where('user_id',auth()->user()->id)->first()->id ;
+        $voyages = Voyage::where('abonne_id',$abonne_id)->paginate(10);
         return view("admin.voyages.index",compact('voyages'));
 
     }
