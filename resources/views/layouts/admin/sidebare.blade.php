@@ -14,8 +14,7 @@
             <ul class="sidebar-links" id="simple-bar">
                <li class="back-btn"><a href="index.html"><img class="img-fluid"
                         src="../assets/images/logo/logo-icon.png" alt=""></a>
-                  <div class="mobile-back text-end"><span>Arrière</span><i class="fa fa-angle-right ps-2"
-                        aria-hidden="true"></i></div>
+                  <div class="mobile-back text-end"><span>Arrière</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
                </li>
 
                <li class="sidebar-list">
@@ -30,88 +29,93 @@
                      <span>Accueil</span>
                   </a>
                </li>
-               @if(auth()->user()->is_admin())
-               <li class="sidebar-list">
-                  <a class="sidebar-link sidebar-title" href="#"><i data-feather="users"></i><span>Abonnes </span></a>
-                  <ul class="sidebar-submenu">
-                     <li><a href="{{route('abonnes.index')}}">Listes</a></li>
-                     <li><a href="{{route('clients.create')}}">Nouveau abonne</a></li>
-                  </ul>
-               </li>
-               <li class="sidebar-list">
-                  <a class="sidebar-link sidebar-title" href="#"><i data-feather="users"></i><span>Client </span></a>
-                  <ul class="sidebar-submenu">
-                     <li><a href="{{route('clients.index')}}">Listes</a></li>
-                     <li><a href="{{route('clients.create')}}">Nouveau client</a></li>
-                  </ul>
-               </li>
-               @endif
-               @if (auth()->user()->is_abonne())
-               <li class="sidebar-list">
-                  <a class="sidebar-link sidebar-title" href="#"><i data-feather="map"></i><span>Voyages</span></a>
-                  <ul class="sidebar-submenu">
-                     <li><a href="{{route('voyages.index')}}">Listes</a></li>
-                     {{-- <li><a href="{{url('admin/voyages/Détail_paquet')}}">Détails du paquet</a></li> --}}
-                     <li><a href="{{route('voyages.create')}}">Nouveau voyage</a></li>
-                     {{-- <li><a href="{{url('admin/voyage/paquets')}}">Toutes les paquets</a></li> --}}
-                     {{-- <li><a href="{{url('admin/voyage/paquets')}}">Nouveau paquet</a></li> --}}
-                  </ul>
-               </li>
-               @endif
 
-               @if (auth()->user()->is_abonne())
-               <li class="sidebar-list">
-                  <a class="linear-icon-link sidebar-link sidebar-title" href="#"><i
-                        data-feather="briefcase"></i><span>Hotel
-                     </span></a>
-                  <ul class="sidebar-submenu">
-                     <li><a href="{{route('hotels.index')}}">Listes</a></li>
-                     <li><a href="{{route('hotels.create')}}">Nouveau hotel</a></li>
-                  </ul>
-               </li>
-               @endif
-
-               @if (auth()->user()->is_abonne())
-               <li class="sidebar-list"><a class="linear-icon-link sidebar-link sidebar-title" href="#"><i
-                        data-feather="coffee"></i><span>Vol </span></a>
-                  <ul class="sidebar-submenu">
-                     <li><a href="{{route('vols.index')}}">Listes</a></li>
-                     <li><a href="{{route('vols.create')}}">Nouveau vol </a></li>
-                  </ul>
-               </li>
-               @endif
-
-               @if (auth()->user()->is_abonne())
-               <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i
-                        data-feather="navigation"></i><span>Bateau</span></a>
-                  <ul class="sidebar-submenu">
-                     <li><a href="{{url('admin/bateaux')}}">Liste</a></li>
-                     <li><a href="{{url('admin/vols/Détail_bateau')}}"> Details de bateau </a></li>
-
-                     <li><a href="{{url('admin/vols/create')}}">Nouveau bateau</a></li>
-
-                  </ul>
-               </li>
-               @endif
-
-               @if (auth()->user()->is_abonne())
-               <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="booking.html"><i
-                        data-feather="bookmark"> </i><span>Réservation</span></a>
-               </li>
-               @endif
-
-
+              
 
                @if(auth()->user()->is_admin())
-               <li class="sidebar-list">
-                  <a class="sidebar-link sidebar-title" href="#"><i data-feather="users"></i><span>Users </span></a>
-                  <ul class="sidebar-submenu">
-                     <li><a href="{{url('admin/users')}}">Listes d'utilisateur</a></li>
-                     <li><a href="{{url('admin/users/create')}}">Nouveau User</a></li>
-                  </ul>
-               </li>
+               
+                  <li class="sidebar-list">
+                     <a class="sidebar-link sidebar-title" href="#"><i data-feather="users"></i><span>Abonnes </span></a>
+                     <ul class="sidebar-submenu">
+                        <li><a href="{{route('abonnes.index')}}">Listes</a></li>
+                        <li><a href="{{route('clients.create')}}">Nouveau abonne</a></li>
+                     </ul>
+                  </li>
+
+                  <li class="sidebar-list">
+                     <a class="sidebar-link sidebar-title" href="#"><i data-feather="users"></i><span>Client </span></a>
+                     <ul class="sidebar-submenu">
+                        <li><a href="{{route('clients.index')}}">Listes</a></li>
+                        <li><a href="{{route('clients.create')}}">Nouveau client</a></li>
+                     </ul>
+                  </li>
+
+                  <li class="sidebar-list">
+                     <a class="sidebar-link sidebar-title" href="#"><i data-feather="users"></i><span>Users </span></a>
+                     <ul class="sidebar-submenu">
+                        <li><a href="{{url('admin/users')}}">Listes d'utilisateur</a></li>
+                        <li><a href="{{url('admin/users/create')}}">Nouveau User</a></li>
+                     </ul>
+                  </li>
+
+               @endif
+               
+               @if (auth()->user()->is_abonne())
+
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="booking.html"><i
+                           data-feather="bookmark"> </i><span>Réservation</span></a>
+                  </li>
+               
+                  <li class="sidebar-list">
+                     <a class="sidebar-link sidebar-title" href="#"><i data-feather="map"></i><span>Voyages</span></a>
+                     <ul class="sidebar-submenu">
+                        <li><a href="{{route('voyages.index')}}">Listes</a></li>
+                        <li><a href="{{route('voyages.create')}}">Nouveau voyage</a></li>
+                     </ul>
+                  </li>
+                              
+                  <li class="sidebar-list">
+                     <a class="linear-icon-link sidebar-link sidebar-title" href="#"><i
+                           data-feather="briefcase"></i><span>Hotel
+                        </span></a>
+                     <ul class="sidebar-submenu">
+                        <li><a href="{{route('hotels.index')}}">Listes</a></li>
+                        <li><a href="{{route('hotels.create')}}">Nouveau hotel</a></li>
+                     </ul>
+                  </li>
+                              
+                  <li class="sidebar-list"><a class="linear-icon-link sidebar-link sidebar-title" href="#"><i
+                           data-feather="coffee"></i><span>Vol </span></a>
+                     <ul class="sidebar-submenu">
+                        <li><a href="{{route('vols.index')}}">Listes</a></li>
+                        <li><a href="{{route('vols.create')}}">Nouveau vol </a></li>
+                     </ul>
+                  </li>
+                                 
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i
+                           data-feather="navigation"></i><span>Bateau</span></a>
+                     <ul class="sidebar-submenu">
+                        <li><a href="{{url('admin/bateaux')}}">Liste</a></li>
+                        <li><a href="{{url('admin/vols/Détail_bateau')}}"> Details de bateau </a></li>
+                        <li><a href="{{url('admin/vols/create')}}">Nouveau bateau</a></li>
+                     </ul>
+                  </li>
+
                @endif
 
+               @if(auth()->user()->is_client())
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href=""><i
+                     data-feather="bookmark"> </i><span>Mes réservation</span></a>
+                  </li>
+
+                  <li class="sidebar-list">
+                     <a class="sidebar-link sidebar-title link-nav" href="{{route('clients.profile',auth()->user()->id)}}">
+                        <i data-feather="users"></i> </i>
+                        <span>Mon profile</span>
+                     </a>
+                  </li>
+
+               @endif
 
             </ul>
          </div>

@@ -39,17 +39,16 @@
                                     </thead>
                                     <tbody>
                                         @forelse ($vols as $vol)
-                                            
-                                        
+                
                                         <tr>
                                             <td> {{$loop->iteration}}</td>
-                                            <td> {{$vol->nom_compagne}}</td>
-                                            <td> {{$vol->date_debart}}</td>
-                                            <td> {{$vol->date_arrive}}</td>
-                                            <td> {{$vol->lieu_debart}}</td>
-                                            <td> {{$vol->lieu_arrive}}</td>
-                                            <td> {{$vol->classage_vol}}</td>
-                                            <td> {{number_format($vol->prix,2,'.',' ')}}</td>
+                                            <td> {{$vol->nom_compagne}} </td>
+                                            <td> {{$vol->date_debart}}  </td>
+                                            <td> {{$vol->date_arrive}}  </td>
+                                            <td> {{$vol->lieu_debart}}  </td>
+                                            <td> {{$vol->lieu_arrive}}  </td>
+                                            <td> {{$vol->classage_vol}} </td>
+                                            <td> {{number_format($vol->prix,2,'.',' ')}} </td>
 
 
                                             <td class="d-flex align-items-center justify-content-center ">
@@ -67,9 +66,6 @@
                                             <td colspan="8"> Aucun vol se trouve pour le moments </td>
                                         </tr>
                                         @endforelse
-                                       
-                                       
-                                         
                                          
                                     </tbody>
                                 </table>

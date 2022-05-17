@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBateauxTable extends Migration
+class CreateBateausTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,17 @@ class CreateBateauxTable extends Migration
      */
     public function up()
     {
-        Schema::create('bateaux', function (Blueprint $table) {
+        Schema::create('bateaus', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
             $table->integer('max_perso');
             $table->double('prix');
-            $table->date('depart');
-            $table->date('arrivee');
-            $table->unsignedBigInteger('abonne_id');
+            $table->date('date_depart');
+            $table->date('date_arrivee');
+            $table->string('lieu_depart');
+            $table->string('lieu_arrivee');
+            $table->string('image');
+            $table->foreignId('abonne_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

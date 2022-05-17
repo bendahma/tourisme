@@ -3,109 +3,103 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Bateau;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
+use App\Models\Abonne;
+use App\Models\Bateau;
+
 class BateauController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
-        return view("admin.bateaux.index");
+        $abonne_id = Abonne::where('user_id',auth()->user()->id)->first()->id ;
+        $bateaux = Bateau::where('abonne_id',$abonne_id)->paginate(10);
+        return view("admin.bateaux.index" , compact('bateaux'));
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         return view("admin.bateaux.create");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
-        $bateau = new Bateau();
-        $bateau->nom= $request->nom;
-        $bateau->slug = Str::slug($request->nom,'_');
-        $bateau->max_perso= $request->max_perso;
-        $bateau->prix= $request->prix;
-        $bateau->depart= $request->depart;
-        $bateau->arrivee= $request->arrivee;
+        $abonne_id = Abonne::where('user_id',auth()->user()->id)->first()->id ;
         
-       
-        $bateau->abonne_id=1;
-        $bateau->save();
+        $image = '' ;
+
+        if($request->hasFile('image')){
+            $request->image->store('bateaux', 'public');
+            $image = $request->image->hashName() ;
+        }
+        
+        Bateau::create([
+            'nom' => $request->nom ,
+            'max_perso' => $request->max_perso ,
+            'prix' => $request->prix ,
+            'date_depart' => $request->date_depart ,
+            'date_arrivee' => $request->date_arrivee ,
+            'lieu_depart' => $request->lieu_depart ,
+            'lieu_arrivee' => $request->lieu_arrivee ,
+            'image' => $image ,
+            'abonne_id' => $abonne_id ,
+        ]);
+
+        return redirect(route(('bateaux.index'))) ;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
         return Bateau::find($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit($id)
     {
-        return Bateau::find($id);
+        $bateau = Bateau::find($id) ;
+        return view("admin.bateaux.create", compact('bateau'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    
+    public function update(Request $request,$id)
     {
-        $bateau=Bateau::find($id);
-        $bateau->nom = $request->nom;
-        $bateau->slug = Str::slug($request->nom,'_');
-        $bateau->max_perso= $request->max_perso;
-        $bateau->prix= $request->prix;
-        $bateau->depart= $request->depart;
-        $bateau->arrivee= $request->arrivee;
-        
-       
-        $bateau->abonne_id=1;
-        $bateau->save();
-        return redirect('admin/bateaux')->with('status','bateau ajouté');
+        $image = '' ;
+        $bateau = Bateau::find($id);
+        if($request->hasFile('image')){
+            $request->image->store('bateaux', 'public');
+            $image = $request->image->hashName() ;
+            $bateau->update([
+                'image' => $image ,
+            ]);
+
+        }
+
+        $bateau->update([
+            'nom' => $request->nom ,
+            'max_perso' => $request->max_perso ,
+            'prix' => $request->prix ,
+            'date_depart' => $request->date_depart ,
+            'date_arrivee' => $request->date_arrivee ,
+            'lieu_depart' => $request->lieu_depart ,
+            'lieu_arrivee' => $request->lieu_arrivee ,
+        ]);
+
+        return redirect(route(('bateaux.index'))) ;
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
-        $bateau=Bateau::find($id);
-        $bateau->delete();
+        Bateau::find($id)->delete() ;
+        
+        return redirect(route(('bateaux.index'))) ;
     }
 }

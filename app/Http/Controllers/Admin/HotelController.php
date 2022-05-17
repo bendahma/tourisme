@@ -28,11 +28,14 @@ class HotelController extends Controller
     
     public function store(Request $request)
     {
+        $image = '' ;
+
         $abonne_id = Abonne::where('user_id',auth()->user()->id)->first()->id ;
         if($request->hasFile('image')){
             $request->image->store('hotels', 'public');
             $image = $request->image->hashName() ;
         }
+
         Hotel::create([
                 'nom' => $request->nom ,
                 'adresse' => $request->adresse ,
@@ -61,6 +64,8 @@ class HotelController extends Controller
 
     public function update(Request $request, Hotel $hotel)
     {
+        $image = '' ;
+
         if($request->hasFile('image')){
             $request->image->store('hotels', 'public');
             $image = $request->image->hashName() ;

@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/hotels/{hotel}/chambres', 'Admin\ChambreController@chambreList')->name('chambreList') ;
     Route::get('/admin/hotels/{hotel}/chambres/create', 'Admin\ChambreController@create')->name('chambre.create') ;
+    Route::get('/clients/{user}/profile', 'Admin\ClientController@profile')->name('clients.profile') ;
     
     // Route::resource group all the basic : route index,create,store,edit,update, delete
     Route::resource('/admin/users', 'Admin\UserController') ; 

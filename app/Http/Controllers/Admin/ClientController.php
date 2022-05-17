@@ -74,7 +74,7 @@ class ClientController extends Controller
            'wilaya' => $request->wilaya ,
         ]);
         // redirect vers liste des clients
-        return redirect(route('clients.index'));
+        return auth()->user()->is_client() ? redirect(route('clients.profile' , auth()->user()->id )) :  redirect(route('clients.index'));
     }
 
    
@@ -83,5 +83,10 @@ class ClientController extends Controller
       $user = User::find($client->user_id)->delete();
       $client->delete();
       return redirect(route('clients.index'));
+    }
+
+    public function profile(User $user){
+        $client = Client::where('user_id',$user->id)->first() ;
+        return view('admin.clients.profile',compact('client'));
     }
 }

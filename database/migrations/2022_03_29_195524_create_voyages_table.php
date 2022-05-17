@@ -21,7 +21,8 @@ class CreateVoyagesTable extends Migration
             $table->integer('max_perso');
             $table->date('date_depart');
             $table->date('date_arrivee');
-            $table->double('prix');
+            $table->string('prix');
+            $table->string('image');
             $table->foreignId('abonne_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
