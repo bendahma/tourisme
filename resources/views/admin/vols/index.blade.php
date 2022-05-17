@@ -42,7 +42,10 @@
                 
                                         <tr>
                                             <td> {{$loop->iteration}}</td>
-                                            <td> {{$vol->nom_compagne}} </td>
+                                            <td style="max-width:10%">
+                                                <img src="{{asset('/storage/vols/' . $vol->image_compagne)}}" alt="" style="max-width:35%;margin-right:12px; border-type:rounded">
+                                                {{$vol->nom_compagne}} 
+                                            </td>
                                             <td> {{$vol->date_debart}}  </td>
                                             <td> {{$vol->date_arrive}}  </td>
                                             <td> {{$vol->lieu_debart}}  </td>

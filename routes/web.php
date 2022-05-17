@@ -11,11 +11,13 @@ use App\Models\Voyage;
 
 Route::get('/', 'IndexController@index')->name('index');
 
+Route::get('/vols', 'IndexController@vols')->name('index.vols');
 
-Route::get('/vols', function () {
-    return view("vols",["vols" => Vol::all()]); 
+
+// Route::get('/vols', function () {
+//     return view("vols",["vols" => Vol::all()]); 
     
-});
+// });
 Route::get('/voyages', function () {
     return view("voyages",["voyages" => Voyage::all()]); 
     

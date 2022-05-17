@@ -21,23 +21,23 @@
                               </div>
                            </li>
                            <li class="dropdown">
-                              <a href="#" class="nav-link menu-title">Accueil</a>
+                              <a href="/" class="nav-link menu-title">Accueil</a>
 
                            </li>
                            <li class="dropdown">
-                              <a href="#" class="nav-link menu-title">Hôtels</a>
+                              <a href="{{url('/hotels')}}" class="nav-link menu-title">Hôtels</a>
 
                            </li>
                            <li class="dropdown">
-                              <a href="#" class="nav-link menu-title">Vols</a>
+                              <a href="{{url('vols')}}" class="nav-link menu-title">Vols</a>
 
                            </li>
                            <li class="dropdown">
-                              <a href="#" class="nav-link menu-title">Bateaux</a>
+                              <a href="{{url('/bateaux')}}" class="nav-link menu-title">Bateaux</a>
 
                            </li>
                            <li class="dropdown">
-                              <a href="#" class="nav-link menu-title">Voyages</a>
+                              <a href="{{url('/voyages')}}" class="nav-link menu-title">Voyages</a>
 
                            </li>
                            <li class="dropdown">

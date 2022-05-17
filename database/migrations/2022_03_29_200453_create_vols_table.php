@@ -16,6 +16,7 @@ class CreateVolsTable extends Migration
         Schema::create('vols', function (Blueprint $table) {
             $table->id();
             $table->string('nom_compagne');
+            $table->string('image_compagne');
             $table->string('lieu_debart');
             $table->string('lieu_arrive');
             $table->date('date_debart');

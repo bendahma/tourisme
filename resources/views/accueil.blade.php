@@ -12,7 +12,7 @@
 
 <!-- header start -->
 @include('layouts.header')
-<!--  header end -->
+
 
 
 <!-- home section start -->
@@ -57,7 +57,7 @@
    </div>
 </section>
 <div class="error"></div>
-<!-- home section end -->
+
 
 
 <!-- book table section start -->
@@ -87,7 +87,7 @@
       </div>
    </div>
 </section>
-<!-- book table section end -->
+
 
 
 <!-- tours section start -->
@@ -230,7 +230,7 @@
       </div>
    </div>
 </section>
-<!-- tours section end -->
+
 
 
 <!-- video section start -->
@@ -303,7 +303,7 @@
       </div>
    </div>
 </div>
-<!-- video section end -->
+
 
 
 <!-- package section start-->
@@ -416,7 +416,7 @@
       </div>
    </div>
 </section>
-<!-- package section end-->
+
 
 
 <!-- full banner section start -->
@@ -462,7 +462,7 @@
    </div>
 
 </section>
-<!-- full banner section end -->
+
 
 
 <!-- testimonial section start -->
@@ -537,7 +537,7 @@
       </div>
    </div>
 </section>
-<!-- testimonial section end -->
+
 
 
 <!-- gallery section start -->
@@ -670,7 +670,7 @@
       </div>
    </div>
 </section>
-<!-- gallery section end -->
+
 
 
 <!-- service section start-->
@@ -724,7 +724,7 @@
       </div>
    </div>
 </section>
-<!-- service section end -->
+
 
 
 <!-- app section start-->
@@ -750,7 +750,7 @@
       </div>
    </div>
 </section>
-<!-- app section end -->
+
 
 
 <!-- subscribe section start -->
@@ -774,7 +774,7 @@
       </div>
    </div>
 </section>
-<!-- subscribe section end -->
+
 
 
 <!-- footer start -->
@@ -971,7 +971,7 @@
       </div>
    </div>
 </footer>
-<!-- footer end -->
+
 
 
 <!-- tap to top -->
@@ -980,7 +980,7 @@
       <i class="fas fa-angle-up"></i>
    </div>
 </div>
-<!-- tap to top end -->
+
 
 
 <!-- setting start -->
@@ -994,5 +994,5 @@
       <label class="tgl-btn" data-tg-off="RTL" data-tg-on="LTR" for="rtl"></label>
    </div>
 </div>
-<!-- setting end -->
+
 @endsection

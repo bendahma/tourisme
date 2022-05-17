@@ -16,7 +16,7 @@ class CreateVoyagesTable extends Migration
         Schema::create('voyages', function (Blueprint $table) {
             $table->id();
             $table->string('titre');
-            $table->string('destination');
+            $table->string('destination')->nullable();
             $table->string('duree');
             $table->integer('max_perso');
             $table->date('date_depart');

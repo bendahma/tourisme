@@ -29,9 +29,17 @@ class VolController extends Controller
     public function store(Request $request)
     {
         $abonne_id = Abonne::where('user_id',auth()->user()->id)->first()->id ;
+        
+        $image_compagne = '' ;
+
+        if($request->hasFile('image_compagne')){
+            $request->image_compagne->store('vols', 'public');
+            $image_compagne = $request->image_compagne->hashName() ;
+        }
 
         Vol::create([
             'nom_compagne' => $request->nom_compagne ,
+            'image_compagne' => $image_compagne ,
             'lieu_debart' => $request->lieu_debart ,
             'lieu_arrive' => $request->lieu_arrive ,
             'date_debart' => $request->date_debart ,
@@ -60,6 +68,16 @@ class VolController extends Controller
     public function update(Request $request, Vol $vol)
     {
         $abonne_id = Abonne::where('user_id',auth()->user()->id)->first()->id ;
+        
+        $image_compagne = '' ;
+
+        if($request->hasFile('image_compagne')){
+            $request->image_compagne->store('vols', 'public');
+            $image_compagne = $request->image_compagne->hashName() ;
+        }
+        $vol->update([
+            'image_compagne' => $image_compagne ,
+        ]);
 
         $vol->update([
             'nom_compagne' => $request->nom_compagne ,
