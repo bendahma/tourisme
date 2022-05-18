@@ -25,6 +25,7 @@
                   <table class=" table table-striped all-package">
                     <thead>
                       <tr>
+                        <th></th>
                         <th>Titre</th>
                         <th>Destination</th>
                         <th>Personne</th>
@@ -39,8 +40,14 @@
                       @if ($voyages->count()>0)
                       @foreach ($voyages as $voyage)
                       <tr>
-                        <td class=" "> {{$voyage->titre}} </td>
-                        <td> {{$voyage->destination}} </td>
+                        <th>
+                          {{$loop->iteration}}
+                        </th>
+                        <td class="d-flex "> 
+                          <img src="{{asset('/storage/voyages/' . $voyage->image)}}" alt="" style="max-width:35%;margin-right:12px; border-type:rounded">
+                          {{$voyage->titre}} </td>
+                        <td> 
+                          {{$voyage->destination}} </td>
                         <td> {{$voyage->max_perso}} </td>
                         <td> {{$voyage->duree}} </td>
                         <td > {{number_format($voyage->prix,2,'.',' ')}} DA</td>

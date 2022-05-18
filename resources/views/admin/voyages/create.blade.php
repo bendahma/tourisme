@@ -19,6 +19,13 @@
                 <div class="card-body">
                   <form class="theme-form mega-form">
                     <div class="mb-3">
+                      <label class="form-label-title">Photo de voyage</label>
+                      @if (isset($hotel))
+                          <img src="{{asset('/storage/voyages/' . $voyage->image)}}" alt="" style="max-width: 15%;margin-right:26px; border-type:rounded">
+                      @endif
+                      <input class="form-control" type="file" placeholder="Nom d'hotel" name="image">
+                  </div>
+                    <div class="mb-3">
                       <label class="form-label-title">Titre voyage</label>
                       <input class="form-control" type="text" placeholder="Titre voyage" name="titre" @if (isset($voyage)) value="{{$voyage->titre}}" @endif>
                     </div>

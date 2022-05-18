@@ -31,6 +31,13 @@ class VoyageController extends Controller
     {
         $abonne_id = Abonne::where('user_id',auth()->user()->id)->first()->id ;
 
+        $image = '' ;
+
+        if($request->hasFile('image')){
+            $request->image->store('voyages', 'public');
+            $image = $request->image->hashName() ;
+        }
+
         Voyage::create([
             'titre' => $request->titre ,
             'destination' => $request->destination ,
@@ -39,6 +46,7 @@ class VoyageController extends Controller
             'date_depart' => $request->date_depart ,
             'date_arrivee' => $request->date_arrivee ,
             'prix' => $request->prix ,
+            'image' => $image,
             'abonne_id' =>  $abonne_id,
         ]);
 
@@ -60,6 +68,17 @@ class VoyageController extends Controller
     
     public function update(Request $request, Voyage $voyage)
     {
+        
+
+        if($request->hasFile('image')){
+            $image = '' ;
+            $request->image->store('voyages', 'public');
+            $image = $request->image->hashName() ;
+            $voyage->update([
+                'image' => $image ,
+            ]);
+        }
+
        $voyage->update([
         'titre' => $request->titre ,
         'destination' => $request->destination ,
