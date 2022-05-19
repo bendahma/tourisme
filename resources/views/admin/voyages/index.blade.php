@@ -13,7 +13,8 @@
                 <h5>Listes des voyages</h5>
               </div>
               <form class="d-inline-flex">
-                <a href="add-new-package.html" class="btn btn-theme"> <i data-feather="plus-square"></i>Nouveau voyage
+                <a href="{{route('voyages.create')}}" class="btn btn-theme"> 
+                  <i data-feather="plus-square"></i>Nouveau voyage
                 </a>
               </form>
             </div>
@@ -24,45 +25,58 @@
                   <table class=" table table-striped all-package">
                     <thead>
                       <tr>
-                        <th>Photo</th>
-                        <th>Nom</th>
-                        <th>Adresse</th>
-                        <th>Max Personne</th>
+                        <th></th>
+                        <th>Titre</th>
+                        <th>Destination</th>
+                        <th>Personne</th>
                         <th>Durée</th>
-                        <th>Prix</th>
+                        <th >Prix  </th>
                         <th>Date Départ</th>
-                        <th>Date Arrivée</th>
-                        <th>Voir</th>
-                        <th>Modifier</th>
-                        <th>supprimer</th>
+                        <th>Date Fin</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
+                      @if ($voyages->count()>0)
+                      @foreach ($voyages as $voyage)
                       <tr>
-                        <td><span><img src="../assets/images/tours/1.jpg" alt="users"></span>
+                        <th>
+                          {{$loop->iteration}}
+                        </th>
+                        <td class="d-flex "> 
+                          <img src="{{asset('/storage/voyages/' . $voyage->image)}}" alt="" style="max-width:35%;margin-right:12px; border-type:rounded">
+                          {{$voyage->titre}} </td>
+                        <td> 
+                          {{$voyage->destination}} </td>
+                        <td> {{$voyage->max_perso}} </td>
+                        <td> {{$voyage->duree}} </td>
+                        <td > {{number_format($voyage->prix,2,'.',' ')}} DA</td>
+                        <td> {{$voyage->date_depart}} </td>
+                        <td> {{$voyage->date_arrivee}} </td>
+     
+                        <td class="font-primary d-flex align-items-center">
+                          <a href="{{route('voyages.edit',$voyage->id)}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                          <form method="POST" action="{{route('voyages.destroy',$voyage->id)}}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn" style="background-color:transparent"> 
+                              <i class="fa fa-trash-o text-danger" style="font-size: 1.3rem" aria-hidden="true"></i>
+                            </button>
+                          </form>
                         </td>
-                        <td><a href="#">Montgolfière</a>
-                        </td>
-                        <td>Alger</td>
-                        <td>300</td>
-                        <td>2 heures</td>
-                        <td>DA20000</td>
-                        <td>5-3-2022</td>
-                        <td>12-3-2022</td>
-                        
-
-
-
                         <td>
-                          <a href="package-detail.html"><i class="fa fa-eye" aria-hidden="true"></i></a>
                         </td>
                         <td>
-                          <a href="javascript:void(0)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                        </td>
-                        <td>
-                          <a href="javascript:void(0)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                         </td>
                       </tr>
+                      @endforeach
+                      @else
+                      <tr style="text-align: center; font-weight:bold; font-size:1rem">
+                        <td colspan="8"> Aucun voyage existe pour le moment. </td>
+                      </tr>
+                      @endif
+                      
+                     
                       
                 
                     </tbody>
@@ -72,20 +86,8 @@
               </div>
             </div>
 
-            <div class=" pagination-box">
-              <nav class="ms-auto me-auto " aria-label="...">
-                <ul class="pagination pagination-primary">
-                  <li class="page-item disabled"><a class="page-link" href="javascript:void(0)"
-                      tabindex="-1">Précédent</a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                  <li class="page-item active"><a class="page-link" href="javascript:void(0)">2 <span
-                        class="sr-only">(courant)</span></a></li>
-                  <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                  <li class="page-item"><a class="page-link" href="javascript:void(0)">Suivant</a></li>
-                </ul>
-              </nav>
-            </div>
+            {{$voyages->links('vendor.pagination.bootstrap')}}
+
 
           </div>
         </div>

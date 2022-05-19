@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Bateau extends Model
 {
     use HasFactory;
-    public function abonne(){
-        return $this->belongsTo('App\Abonne');
-    }
+    
+    protected $guarded = [] ;
 }

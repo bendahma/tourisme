@@ -15,11 +15,15 @@ class CreateVolsTable extends Migration
     {
         Schema::create('vols', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_compa');
-            $table->date('date_D');
-            $table->date('date_A');
+            $table->string('nom_compagne');
+            $table->string('image_compagne');
+            $table->string('lieu_debart');
+            $table->string('lieu_arrive');
+            $table->date('date_debart');
+            $table->date('date_arrive');
             $table->string('classage_vol');
-            $table->unsignedBigInteger('abonne_id');
+            $table->string('prix');
+            $table->foreignId('abonne_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

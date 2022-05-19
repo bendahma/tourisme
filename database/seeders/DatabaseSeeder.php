@@ -13,26 +13,34 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
    {
-       /* App\Hotel::create(
 
-            [
-            'nom_h'=> 'hotel mouna',
-            'adresse_h'=> 'tlemcen',
-            'photo_h'=> ' ',
-            ]
-        );
-    
-        // \App\Models\User::factory(10)->create();
-    }*/
-    $this->call([
-        HotelSeeder::class,
+    \App\Models\User::factory(1)->create([
+       'email' => 'admin@tourisme.com',
+       'user_type' => 'super_admin'
     ]);
-    $this->call([
-         VolSeeder::class,
+    \App\Models\User::factory(1)->create([
+       'email' => 'abonne@tourisme.com',
+       'user_type' => 'abonne'
     ]);
-    $this->call([
-        VoyageSeeder::class,
-   ]);
+    \App\Models\User::factory(1)->create([
+       'email' => 'client@tourisme.com',
+       'user_type' => 'client'
+    ]);
+    \App\Models\Abonne::factory(1)->create([
+       'user_id' => 2
+    ]);
+    \App\Models\Client::factory(1)->create([
+       'user_id' => 3
+    ]);
+   //  $this->call([
+   //      HotelSeeder::class,
+   //  ]);
+   //  $this->call([
+   //       VolSeeder::class,
+   //  ]);
+   //  $this->call([
+   //      VoyageSeeder::class,
+   // ]);
 }
 
 }

@@ -2,8 +2,11 @@
 @section('content')
 <div class="page-body">
 
-    <form class="theme-form mega-form" method="POST" enctype="multipart/form-data" action="{{url('/admin/hotels')}}">
+    <form class="theme-form mega-form" method="POST" enctype="multipart/form-data" action="{{ isset($hotel) ? route('hotels.update',$hotel->id) : route('hotels.store') }}">
         @csrf
+        @if (isset($hotel))
+            @method('PATCH')
+        @endif
     <!-- Container-fluid starts-->
     <div class="container-fluid">
         <div class="row">
@@ -21,26 +24,47 @@
                             <div class="card-body">
                                     <div class="mb-3">
                                         <label class="form-label-title">Photo de l'hotel</label>
-                                        <input class="form-control" type="file" placeholder="Nom d'hotel" name="photo">
+                                        @if (isset($hotel))
+                                            <img src="{{asset('/storage/hotels/' . $hotel->image)}}" alt="" style="max-width: 15%;margin-right:26px; border-type:rounded">
+                                        @endif
+                                        <input class="form-control" type="file" placeholder="Nom d'hotel" name="image">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label-title">Nom d'hotel</label>
-                                        <input class="form-control" type="text" placeholder="Nom d'hotel" name="nom">
+                                        <input class="form-control" type="text" placeholder="Nom d'hotel" name="nom" @if (isset($hotel)) value="{{ $hotel->nom }}" @endif >
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label-title">Adresse</label>
-                                        <input class="form-control" type="text" placeholder="Adresse" name="Adresse">
+                                        <input class="form-control" type="text" placeholder="Adresse" name="adresse" @if (isset($hotel)) value="{{ $hotel->adresse }}" @endif>
                                     </div>
                                    
                                     <div class="mb-3">
                                         <label class="form-label-title mt-4">Téléphone</label>
-                                        <input class="form-control" type="Number"
-                                            placeholder="Téléphone">
+                                        <input class="form-control" type="text" name="telephone" placeholder="Téléphone" @if (isset($hotel)) value="{{ $hotel->telephone }}" @endif>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label-title mt-4">Nombre des chambre</label>
+                                        <input class="form-control" type="Number" name="nombre_chambre" placeholder="Nombre des chambres" @if (isset($hotel)) value="{{ $hotel->nombre_chambre }}" @endif>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label-title mt-4">Type d'hotel</label>
+                                        <select class="form-control" name="type">
+                                            <option disabled>Choisi type de l'hotel</option>
+                                            <option value="2 Etoile" {{ (isset($hotel) and $hotel->type == '2 Etoile') ? 'selected' : ''}}>2 Etoile</option>
+                                            <option value="3 Etoile" {{ (isset($hotel) and $hotel->type == '3 Etoile') ? 'selected' : ''}}>3 Etoile</option>
+                                            <option value="4 Etoile" {{ (isset($hotel) and $hotel->type == '4 Etoile') ? 'selected' : ''}}>4 Etoile</option>
+                                            <option value="5 Etoile" {{ (isset($hotel) and $hotel->type == '5 Etoile') ? 'selected' : ''}}>5 Etoile</option>
+                                        </select>
                                     </div>
                                    
                             </div>
                        
-
+                            <div class="card-footer text-end">
+                                <button  type="submit" class="btn btn-primary me-3">{{isset($hotel) ? 'Mettre à jours ' : 'Ajouté '}} Hotel </button>
+                                <button class="btn btn-outline-primary">Annuler</button>
+                            </div>
                         </div>
 
                         <!--Hotel detail end-->
@@ -54,7 +78,7 @@
 
 
     <!--room detail start-->
-    <div class="container-fluid">
+    {{-- <div class="container-fluid">
         <div class="row">
 
             <div class="col-12">
@@ -80,17 +104,14 @@
                                   
                             </div>
                            
-                            <div class="card-footer text-end">
-                                <button  type="submit" class="btn btn-primary me-3">Envoyer</button>
-                                <button class="btn btn-outline-primary">Annuler</button>
-                            </div>
+                           
                         </div>
                     </div>
 
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     </form>
     <!--room detail end-->
     <div class="container-fluid">
