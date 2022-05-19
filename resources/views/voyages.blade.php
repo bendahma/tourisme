@@ -2,24 +2,7 @@
 
 @section('content')
 
-    <!-- header start -->
-    <header class="inner-page overlay-black py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="menu">
-                        <div class="brand-logo">
-                            <a href="/">
-                                <img src="../assets/images/icon/footer-logo.png" alt="" class="img-fluid blur-up lazyload">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!--  header end -->
-
+    @include('layouts.header')
 
     <!-- breadcrumb start -->
     <section class="breadcrumb-section parallax-img pt-0">
@@ -51,7 +34,6 @@
         </div>
     </section>
     <!-- breadcrumb end -->
-
 
     <!-- section start -->
     <section class="small-section bg-inner">
@@ -322,26 +304,27 @@
                                 <div class="col-sm-6 popular grid-item wow fadeInUp" data-class="popular">
                                     <div class="special-box p-0">
                                         <div class="special-img">
-                                            <a href="tour-single-6.html"> <img src="../assets/images/tour/tour/7.jpg" class="img-fluid blur-up lazyload bg-img" alt=""> </a>
+                                           <img src="{{asset('/storage/voyages/' . $voyage->image)}}" class="img-fluid blur-up lazyload bg-img" alt="">
                                             <div class="top-icon">
-                                                <a href="#" class="" data-bs-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Wishlist">
+                                                {{-- <a href="#" class="" data-bs-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Wishlist">
                                                     <i class="far fa-heart"></i>
-                                                </a>
+                                                </a> --}}
                                             </div>
                                         </div>
                                         <div class="special-content">
-                                            <a href="tour-single-6.html">
-                                                <h5> {{$voyage->nom_v}} </h5>
-                                            </a>
+                                            
+                                                <h5> {{$voyage->titre}} </h5>
+                                                <span> {{$voyage->duree}} </span>
+                                            
                                             <div class="tour-detail">
-                                                <h6>
+                                                <h6 class="my-1">
                                                     <i class="fas fa-plane-departure me-3"></i> 
-                                                    Kuta (2N) → Lombok (2N) → Ubud (2N) 
+                                                    {{$voyage->destination}}
                                                     <i class="fas fa-plane-arrival ms-3"></i>
                                                 </h6>
 
-                                                <div class="include-sec">
-                                                    <span>include at this price</span>
+                                                <div class="include-sec" class="my-1">
+                                                    <span>Le voyage assuré : </span>
                                                     <ul class="include">
                                                         <li>
                                                             <img src="../assets/images/icon/tour/hotel.png" class="img-fluid blur-up lazyload" alt="" data-bs-toggle="tooltip" data-placement="top" title="Hotel">
@@ -367,307 +350,29 @@
                                                 </div>
                                                 <div class="bottom-section">
                                                     <div class="price">
-                                                        <h6><del>$1300</del>$1245</h6>
-                                                        <span>price per person</span>
+                                                        <h6>{{ number_format( $voyage->prix,2,'.',' ' )}} DA</h6>
+                                                        <span></span>
                                                     </div>
+                                                </div>
+                                                <div class="book-flight my-4 d-flex justify-content-center">
+                                                    <a href="" class="btn btn-solid color1 ">Reservé maintenant</a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="label-offer">Recommended</div>
                                     </div>
                                 </div>
                             @endforeach
-                            <div class="col-sm-6 latest grid-item wow fadeInUp" data-class="latest">
-                                <div class="special-box p-0">
-                                    <div class="special-img">
-                                        <a href="tour-single-6.html">
-                                            <img src="../assets/images/tour/tour/8.jpg"
-                                                class="img-fluid blur-up lazyload bg-img" alt="">
-                                        </a>
-                                        <div class="top-icon">
-                                            <a href="#" class="" data-bs-toggle="tooltip" data-placement="top" title=""
-                                                data-original-title="Add to Wishlist">
-                                                <i class="far fa-heart"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="special-content">
-                                        <a href="tour-single-6.html">
-                                            <h5>best of europe<span>(6N 7D)</span></h5>
-                                        </a>
-                                        <div class="tour-detail">
-
-                                            <h6><i class="fas fa-plane-departure me-3"></i> Kuta (2N) → Lombok (2N) →
-                                                Ubud (2N) <i class="fas fa-plane-arrival ms-3"></i></h6>
-                                            <div class="include-sec">
-                                                <span>include at this price</span>
-                                                <ul class="include">
-                                                    <li><img src="../assets/images/icon/tour/hotel.png"
-                                                            class="img-fluid blur-up lazyload" alt=""
-                                                            data-bs-toggle="tooltip" data-placement="top" title="Hotel">
-                                                        hotels</li>
-                                                    <li><img src="../assets/images/icon/tour/airplane.png"
-                                                            class="img-fluid blur-up lazyload" alt=""
-                                                            data-bs-toggle="tooltip" data-placement="top" title="Flight">
-                                                        flights</li>
-                                                    <li><img src="../assets/images/icon/tour/fork.png"
-                                                            class="img-fluid blur-up lazyload" alt=""
-                                                            data-bs-toggle="tooltip" data-placement="top"
-                                                            title="Meals">meals</li>
-                                                    <li class="not-include"><img
-                                                            src="../assets/images/icon/tour/photo-camera.png"
-                                                            class="img-fluid blur-up lazyload" alt=""
-                                                            data-bs-toggle="tooltip" data-placement="top"
-                                                            title="Sightseeing">sightseeing</li>
-                                                    <li class="not-include"><img
-                                                            src="../assets/images/icon/tour/visa.png"
-                                                            class="img-fluid blur-up lazyload" alt=""
-                                                            data-bs-toggle="tooltip" data-placement="top" title="Visa">visa
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="bottom-section">
-                                                <div class="price">
-                                                    <h6><del>$1300</del>$1245</h6>
-                                                    <span>price per person</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
                         </div>
                     </div>
-                    <nav aria-label="Page navigation example" class="pagination-section mt-0">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="javascript:void(0)" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a></li>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                    <div class="d-flex justify-content-center">
+                        {{ $voyages->links('vendor.pagination.bootstrap') }}
+                    </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- section End -->
 
-
-    <!-- footer start -->
-    <footer>
-        <div class="footer section-b-space section-t-space">
-            <div class="container">
-                <div class="row order-row">
-                    <div class="col-xl-2 col-md-6 order-cls">
-                        <div class="footer-title mobile-title">
-                            <h5>contacter nous</h5>
-                        </div>
-                        <div class="footer-content">
-                            <div class="contact-detail">
-                                <div class="footer-logo">
-                                    <img src="../assets/images/icon/footer-logo.png" alt=""
-                                        class="img-fluid blur-up lazyload">
-                                </div>
-                                <p>............................................................................</p>
-                                <ul class="contact-list">
-                                    <li><i class="fas fa-map-marker-alt"></i> A-32, Tlemcen,Algérie.</li>
-                                    <li><i class="fas fa-phone-alt"></i>  +213 51 84 57 51 81</li>
-                                    <li><i class="fas fa-envelope"></i> contact@gmail.com</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-3">
-                        <div class="footer-space">
-                            <div class="footer-title">
-                                <h5>à propos</h5>
-                            </div>
-                            <div class="footer-content">
-                                <div class="footer-links">
-                                    <ul>
-                                        <li><a href="#">à propos de nous</a></li>
-                                        <li><a href="#">FAQ</a></li>
-                                        <li><a href="#">connexion</a></li>
-                                        <li><a href="#">S'inscrire</a></li>
-                                        <li><a href="#">termes & co.</a></li>
-                                        <li><a href="#">intimité</a></li>
-                                        <li><a href="#">support</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6">
-                        <div class="footer-title">
-                            <h5>top places</h5>
-                        </div>
-                        <div class="footer-content">
-                            <div class="footer-place">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <div class="place rounded5">
-                                            <a href="#">
-                                                <img src="../assets/images/tour/footer/1.jpg"
-                                                    class="img-fluid blur-up lazyload" alt="">
-                                                <div class="overlay">
-                                                    <h6>jijel</h6>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="place rounded5">
-                                            <a href="#">
-                                                <img src="../assets/images/tour/footer/2.jpg"
-                                                    class="img-fluid blur-up lazyload" alt="">
-                                                <div class="overlay">
-                                                    <h6>plage</h6>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="place rounded5">
-                                            <a href="#">
-                                                <img src="../assets/images/tour/footer/3.jpg"
-                                                    class="img-fluid blur-up lazyload" alt="">
-                                                <div class="overlay">
-                                                    <h6>Oran</h6>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="place rounded5">
-                                            <a href="#">
-                                                <img src="../assets/images/tour/footer/4.jpg"
-                                                    class="img-fluid blur-up lazyload" alt="">
-                                                <div class="overlay">
-                                                    <h6>Ville</h6>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="place rounded5">
-                                            <a href="#">
-                                                <img src="../assets/images/tour/footer/5.jpg"
-                                                    class="img-fluid blur-up lazyload" alt="">
-                                                <div class="overlay">
-                                                    <h6>Montagne</h6>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="place rounded5">
-                                            <a href="#">
-                                                <img src="../assets/images/tour/footer/6.jpg"
-                                                    class="img-fluid blur-up lazyload" alt="">
-                                                <div class="overlay">
-                                                    <h6>sauvage</h6>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-3 order-cls">
-                        <div class="footer-space">
-                            <div class="footer-title">
-                                <h5>Liens utiles</h5>
-                            </div>
-                            <div class="footer-content">
-                                <div class="footer-links">
-                                    <ul>
-                                        <li><a href="#">Accueil</a></li>
-                                        <li><a href="#">votre bateau</a></li>
-                                        <li><a href="#">dernière vidéo</a></li>
-                                        <li><a href="#">services</a></li>
-                                        <li><a href="#">accord de réservation</a></li>
-                                        <li><a href="#">Appel d'urgence</a></li>
-                                        <li><a href="#">application mobile</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6">
-                        <div class="footer-title">
-                            <h5>new topics</h5>
-                        </div>
-                        <div class="footer-content">
-                            <div class="footer-blog">
-                                <div class="media">
-                                    <div class="img-part rounded5">
-                                        <a href="#"><img src="../assets/images/cab/blog-footer/1.jpg"
-                                                class="img-fluid blur-up lazyload" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h5>nouvelles récentes</h5>
-                                        <p>...........................................................</p>
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <div class="img-part rounded5">
-                                        <a href=""><img src="../assets/images/cab/blog-footer/2.jpg"
-                                                class="img-fluid blur-up lazyload" alt=""></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h5>nouvelles récentes</h5>
-                                        <p>..........................................................</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="sub-footer">
-            <div class="container">
-                <div class="row ">
-                    <div class="col-xl-6 col-md-6 col-sm-12">
-                        <div class="footer-social">
-                            <ul>
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-md-6 col-sm-12">
-                        <div class="copy-right">
-                            <p>copyright 2019 rica by <i class="fas fa-heart"></i> pixelstrap</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- footer end -->
-
-
-    <!-- tap to top -->
-    <div class="tap-top">
-        <div>
-            <i class="fas fa-angle-up"></i>
-        </div>
-    </div>
+    @include('layouts.footer')
 
 @endsection

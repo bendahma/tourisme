@@ -40,7 +40,7 @@
                                    
                                     <div class="mb-3">
                                         <label class="form-label-title mt-4">Téléphone</label>
-                                        <input class="form-control" type="Number" name="telephone" placeholder="Téléphone" @if (isset($hotel)) value="{{ $hotel->telephone }}" @endif>
+                                        <input class="form-control" type="text" name="telephone" placeholder="Téléphone" @if (isset($hotel)) value="{{ $hotel->telephone }}" @endif>
                                     </div>
 
                                     <div class="mb-3">

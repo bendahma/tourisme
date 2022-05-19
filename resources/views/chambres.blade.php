@@ -2,14 +2,13 @@
 
 @section('content')
 
+
     @include('layouts.header')
-
-
 
     <!-- breadcrumb start -->
     <section class="breadcrumb-section pt-0">
-        <img src="../assets/images/inner-pages/bg-bread.jpg" class="bg-img img-fluid blur-up lazyload" alt="">
-        
+        <img src="{{asset('assets/images/inner-pages/bg-bread.jpg')}}" class="bg-img img-fluid blur-up lazyload" alt="">
+       <div class=""></div>
         <div class="title-breadcrumb">Rica</div>
     </section>
     <!-- breadcrumb end -->
@@ -220,24 +219,25 @@
                     </a>
                     <div class="product-wrapper-grid special-section grid-box">
                         <div class="row  content grid">
-                            @foreach ($hotels as $hotel)
+                            @foreach ($chambres as $chambre)
                             <div class="col-sm-6  popular grid-item wow fadeInUp" data-class="popular">
                                 <div class="special-box">
                                     <div class="special-img">
                                         <a href="hotel-single-7.html">
-                                            <img src="{{asset('/storage/hotels/' . $hotel->image)}}" class="img-fluid blur-up lazyload bg-img" alt="">
+                                            <img src="{{asset('/storage/chambres/' . $chambre->image)}}" class="img-fluid lazyload bg-img" alt="">
                                         </a>
                                         
                                     </div>
                                     <div class="special-content">
-                                        <a href="hotel-single-7.html">
-                                            <h5> 
-                                                {{$hotel->nom}}
-                                                <span> <i class="fas fa-map-marker-alt"></i> {{$hotel->type}}</span>
-                                                <span> <i class="fas fa-map-marker-alt"></i> {{$hotel->adresse}}</span>
-                                                <span> <i class="fas fa-map-marker-alt"></i> {{$hotel->telephone }}</span>
+                                        
+                                            <h5 > 
+                                                <span style="font-weight: bolder; font-size:1.3rem; color:black" class="my-1"> {{$chambre->hotel->nom}}  </span> 
+                                                <span style="font-weight: bold; font-size:1rem; color:darkgray" class="my-1">Type :  {{$chambre->type_chambre}} </span>
+                                                
+                                                <span style="font-weight: bold; font-size:0.9rem; color:darkgray" class="my-1"> <i class="fas fa-map-marker-alt"></i> {{number_format($chambre->prix,2,'.',' ')}} DA</span>
+                                                <span style="font-weight: bold; font-size:0.9rem; color:darkgray" class="my-1"> <i class="fas fa-map-marker-alt"></i>N° de personne : {{$chambre->nombre_personne }}</span>
                                             </h5>
-                                        </a>
+                                       
                                        
                                         <div class="bottom-section">
                                             <div class="price">
@@ -248,7 +248,7 @@
                                                     <span>parking</span>
                                                 </div> --}}
                                                 <div class="book-flight my-4 d-flex justify-content-center">
-                                                    <a href="{{route('hotels.chambres',$hotel->id)}}" class="btn btn-solid color1 ">Voir une chambre</a>
+                                                    <a href="" class="btn btn-solid color1 ">Réservé cette chambre</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -261,7 +261,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-center">
-                        {{ $hotels->links('vendor.pagination.bootstrap') }}
+                        {{ $chambres->links('vendor.pagination.bootstrap') }}
                     </div>
                 </div>
             </div>
@@ -271,5 +271,6 @@
 
 
     @include('layouts.footer')
+
 
 @endsection

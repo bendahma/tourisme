@@ -16,4 +16,8 @@ class Chambre extends Model
     public function hotel() {
         return $this->belongsTo(Hotel::class);
     }
+
+    public function min_prix(){
+        return $this->orderBy('prix','ASC')->take(1)->get() ;
+    }
 }
