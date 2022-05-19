@@ -46,20 +46,21 @@
                               <a href="#" class="nav-link menu-title">Contact</a>
 
                            </li>
-                           {{-- @auth
-
-                           @guest
-
-
-
-                           @endauth --}}
-
+                          
                            @auth
-                           <li class="dropdown">
-                              <a href="{{ url('/admin') }}" class="nav-link menu-title">
-                                 Dashboard
-                              </a>
-                           </li>
+                              <li class="dropdown">
+                                 <a href="{{ url('/admin') }}" class="nav-link menu-title">
+                                    Dashboard
+                                 </a>
+                              </li>
+                              @if (auth()->user()->is_client())
+                                 <li class="dropdown">
+                                    <a href="" class="nav-link menu-title d-flex"> 
+                                       <i class="fas fa-shopping-cart fa-2x text-danger"></i> 
+                                       <span class="align-items-start mx-1"> 1 </span>
+                                    </a>
+                                 </li>
+                              @endif
                            @endauth
                            @guest
                            <li class="dropdown">
@@ -71,6 +72,7 @@
                            </li>
 
                            @endguest
+                          
                         </ul>
                      </div>
                   </div>

@@ -3,9 +3,9 @@
 
     @include('layouts.header')
 
-    <!-- breadcrumb start -->
-    <section class="breadcrumb-section flight-sec pt-0">
-        <img src="../assets/images/flights/flight-breadcrumb.jpg" class="bg-img img-fluid blur-up lazyload" alt="">
+    <section class="breadcrumb-section pt-0">
+        <img src="../assets/images/inner-pages/bg-bread.jpg" class="bg-img img-fluid blur-up lazyload" alt="">
+        
         <div class="flight run"></div>
     </section>
     
@@ -333,7 +333,6 @@
     
     @include('layouts.footer')
 
-    
     
 @endsection
     

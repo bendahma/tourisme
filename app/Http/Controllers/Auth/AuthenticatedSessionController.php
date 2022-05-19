@@ -31,8 +31,10 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
-        return redirect()->intended(RouteServiceProvider::HOME);
+        
+        // ici on teste si le utilisateur est CLIENT on renvoyer vers la page d'acceuil si non on l'envoyer vers interface abonnee ou admin 
+        // motive : pour le client reserve ses besoin et pour l'abonne et admin controller ses resource .
+        return auth()->user()->is_client() ? redirect(url('/')) :  redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**

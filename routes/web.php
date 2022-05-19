@@ -15,6 +15,7 @@ Route::get('/hotels', 'IndexController@hotels')->name('index.hotels');
 Route::get('/hotels/{hotel}/chambres', 'IndexController@chambres')->name('hotels.chambres');
 Route::get('/bateaux', 'IndexController@bateaux')->name('index.bateaux');
 Route::get('/contact', 'IndexController@contacts')->name('index.contacts');
+Route::post('/reservation/{reservation}', 'IndexController@reservation')->name('reservation');
 
 // admin and abonnee and client interfaces routes
 // Routes need to be authenticated to be accessed 
